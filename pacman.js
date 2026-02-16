@@ -13,7 +13,7 @@ let level = 1;
 let gameRunning = true;
 let powerUpActive = false;
 let powerUpTimer = 0;
-const POWER_UP_DURATION = 300; // 5 seconds at 60 FPS
+const POWER_UP_DURATION = 600; // 10 seconds at 60 FPS
 
 // Maze Layout (0 = wall, 1 = dot, 2 = empty, 3 = power pellet)
 const maze = [
@@ -64,10 +64,10 @@ const pacman = {
 
 // Ghosts
 const ghosts = [
-    { x: 12, y: 13, color: '#FF0000', direction: 0, targetX: 0, targetY: 0, speed: 0.08 }, // Red - Blinky
-    { x: 14, y: 13, color: '#FFB8FF', direction: 0, targetX: 0, targetY: 0, speed: 0.08 }, // Pink - Pinky
-    { x: 13, y: 14, color: '#00FFFF', direction: 0, targetX: 0, targetY: 0, speed: 0.08 }, // Cyan - Inky
-    { x: 15, y: 14, color: '#FFB852', direction: 0, targetX: 0, targetY: 0, speed: 0.08 }  // Orange - Clyde
+    { x: 12, y: 13, color: '#FF0000', direction: 0, targetX: 0, targetY: 0, speed: 0.08, eaten: false, respawnTimer: 0 }, // Red - Blinky
+    { x: 14, y: 13, color: '#FFB8FF', direction: 0, targetX: 0, targetY: 0, speed: 0.08, eaten: false, respawnTimer: 0 }, // Pink - Pinky
+    { x: 13, y: 14, color: '#00FFFF', direction: 0, targetX: 0, targetY: 0, speed: 0.08, eaten: false, respawnTimer: 0 }, // Cyan - Inky
+    { x: 15, y: 14, color: '#FFB852', direction: 0, targetX: 0, targetY: 0, speed: 0.08, eaten: false, respawnTimer: 0 }  // Orange - Clyde
 ];
 
 // Rose power-up
@@ -179,18 +179,32 @@ function update() {
     }
     
     // Update ghosts
-    ghosts.forEach(ghost => updateGhost(ghost));
+    ghosts.forEach(ghost => {
+        if (ghost.eaten) {
+            ghost.respawnTimer--;
+            if (ghost.respawnTimer <= 0) {
+                ghost.eaten = false;
+            }
+        } else {
+            updateGhost(ghost);
+        }
+    });
     
     // Check collision with ghosts
+    let hitGhost = false;
     ghosts.forEach(ghost => {
+        if (ghost.eaten) return; // Skip eaten ghosts
+        
         if (Math.abs(pacman.x - ghost.x) < 0.6 && Math.abs(pacman.y - ghost.y) < 0.6) {
             if (powerUpActive) {
                 // Pac-Man is powered up - eat the ghost!
+                console.log('Eating ghost! Power-up active:', powerUpActive);
                 respawnGhost(ghost);
                 score += 200;
                 updateUI();
-            } else {
-                // Normal mode - ghost kills Pac-Man
+            } else if (!hitGhost) {
+                // Normal mode - ghost kills Pac-Man (only once)
+                hitGhost = true;
                 loseLife();
             }
         }
@@ -305,7 +319,11 @@ function draw() {
     drawPacman();
     
     // Draw ghosts
-    ghosts.forEach(ghost => drawGhost(ghost));
+    ghosts.forEach(ghost => {
+        if (!ghost.eaten) {
+            drawGhost(ghost);
+        }
+    });
     
     // Draw hearts (bigger and with trail effect)
     hearts.forEach(heart => {
@@ -442,6 +460,8 @@ function activatePowerUp() {
     score += 100;
     updateUI();
     
+    console.log('Power-up activated! Duration:', POWER_UP_DURATION, 'frames');
+    
     // Play a visual celebration (optional, can add sound later)
     document.getElementById('powerUpIndicator').style.fontSize = '24px';
     document.getElementById('powerUpIndicator').style.color = '#FF1493';
@@ -460,6 +480,8 @@ function shootHeart() {
 }
 
 function respawnGhost(ghost) {
+    ghost.eaten = true;
+    ghost.respawnTimer = 180; // 3 seconds respawn delay
     ghost.x = 14;
     ghost.y = 13;
 }

@@ -5,16 +5,39 @@ from datetime import datetime
 
 # Configuration
 ARXIV_API_URL = "http://export.arxiv.org/api/query"
-SEARCH_QUERY = "cat:cs.AI OR cat:cs.LG OR cat:cs.CV OR cat:cs.CL"  # AI, ML, Computer Vision, NLP
-MAX_RESULTS = 20
+
+# Multiple search topics - customize these as needed!
+SEARCH_TOPICS = {
+    'ai_ml': {
+        'query': 'cat:cs.AI OR cat:cs.LG OR cat:cs.CV OR cat:cs.CL',
+        'name': 'AI & Machine Learning',
+        'max_results': 10
+    },
+    'causal': {
+        'query': 'all:causal AND (cat:cs.AI OR cat:cs.LG OR cat:stat.ML)',
+        'name': 'Causal Inference',
+        'max_results': 10
+    },
+    'llm': {
+        'query': 'all:"large language model" OR all:LLM OR all:GPT',
+        'name': 'Large Language Models',
+        'max_results': 5
+    },
+    'reinforcement': {
+        'query': 'all:"reinforcement learning" OR all:RL',
+        'name': 'Reinforcement Learning',
+        'max_results': 5
+    }
+}
+
 OUTPUT_FILE = "papers.json"
 
-def fetch_arxiv_papers():
-    """Fetch latest papers from arXiv API"""
+def fetch_arxiv_papers_by_topic(topic_query, max_results):
+    """Fetch papers for a specific topic"""
     params = {
-        'search_query': SEARCH_QUERY,
+        'search_query': topic_query,
         'start': 0,
-        'max_results': MAX_RESULTS,
+        'max_results': max_results,
         'sortBy': 'submittedDate',
         'sortOrder': 'descending'
     }
@@ -24,7 +47,7 @@ def fetch_arxiv_papers():
         response.raise_for_status()
         return response.text
     except requests.RequestException as e:
-        print(f"Error fetching papers: {e}")
+        print(f"Error fetching papers for query '{topic_query}': {e}")
         return None
 
 def parse_arxiv_response(xml_data):
@@ -78,7 +101,8 @@ def parse_arxiv_response(xml_data):
                 'published': published_text,
                 'link': paper_link,
                 'pdfLink': pdf_link,
-                'categories': category_list
+                'categories': category_list,
+                'topic': ''  # Will be set by the fetcher
             }
             
             papers.append(paper)
@@ -89,10 +113,11 @@ def parse_arxiv_response(xml_data):
         print(f"Error parsing XML: {e}")
         return []
 
-def save_papers_to_json(papers):
+def save_papers_to_json(papers, topics_info):
     """Save papers to JSON file"""
     data = {
         'lastUpdated': datetime.now().isoformat(),
+        'topics': topics_info,
         'papers': papers
     }
     
@@ -104,20 +129,50 @@ def save_papers_to_json(papers):
         print(f"Error saving to file: {e}")
 
 def main():
-    print("Fetching latest arXiv papers...")
-    xml_data = fetch_arxiv_papers()
+    print("Fetching latest arXiv papers from multiple topics...")
+    print(f"Topics: {', '.join([info['name'] for info in SEARCH_TOPICS.values()])}\n")
     
-    if xml_data:
-        print("Parsing papers...")
-        papers = parse_arxiv_response(xml_data)
+    all_papers = []
+    topics_info = {}
+    
+    # Fetch papers for each topic
+    for topic_id, topic_config in SEARCH_TOPICS.items():
+        print(f"Fetching {topic_config['name']}...")
+        xml_data = fetch_arxiv_papers_by_topic(
+            topic_config['query'], 
+            topic_config['max_results']
+        )
         
-        if papers:
-            print(f"Found {len(papers)} papers")
-            save_papers_to_json(papers)
+        if xml_data:
+            papers = parse_arxiv_response(xml_data)
+            
+            # Add topic information to each paper
+            for paper in papers:
+                paper['topic'] = topic_config['name']
+            
+            all_papers.extend(papers)
+            topics_info[topic_id] = {
+                'name': topic_config['name'],
+                'count': len(papers)
+            }
+            print(f"  ✓ Found {len(papers)} papers\n")
         else:
-            print("No papers found")
+            print(f"  ✗ Failed to fetch papers\n")
+    
+    if all_papers:
+        # Remove duplicates (same arXiv ID)
+        seen_ids = set()
+        unique_papers = []
+        for paper in all_papers:
+            paper_id = paper['link']
+            if paper_id not in seen_ids:
+                seen_ids.add(paper_id)
+                unique_papers.append(paper)
+        
+        print(f"Total unique papers: {len(unique_papers)}")
+        save_papers_to_json(unique_papers, topics_info)
     else:
-        print("Failed to fetch papers")
+        print("No papers found from any topic")
 
 if __name__ == "__main__":
     main()

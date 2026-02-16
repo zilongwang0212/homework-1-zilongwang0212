@@ -1,7 +1,9 @@
 // Load and display arXiv papers
 let allPapers = [];
-let currentFilter = 'all';
+let currentCategoryFilter = 'all';
+let currentTopicFilter = 'all';
 let currentSearchQuery = '';
+let availableTopics = [];
 
 async function loadPapers() {
     try {
@@ -19,12 +21,30 @@ async function loadPapers() {
                 `Last updated: ${new Date(data.lastUpdated).toLocaleString()}`;
         }
         
+        // Populate topic filter
+        if (data.topics) {
+            availableTopics = data.topics;
+            populateTopicFilter(data.topics);
+        }
+        
         displayPapers(allPapers);
     } catch (error) {
         console.error('Error loading papers:', error);
         document.getElementById('paperList').innerHTML = 
             '<div class="error">Failed to load papers. The data might not be available yet. Please check back later.</div>';
     }
+}
+
+function populateTopicFilter(topics) {
+    const topicSelect = document.getElementById('topicFilter');
+    
+    // Add options for each topic
+    Object.entries(topics).forEach(([topicId, topicInfo]) => {
+        const option = document.createElement('option');
+        option.value = topicInfo.name;
+        option.textContent = `${topicInfo.name} (${topicInfo.count})`;
+        topicSelect.appendChild(option);
+    });
 }
 
 function displayPapers(papers) {
@@ -64,6 +84,7 @@ function displayPapers(papers) {
             <div class="paper-card">
                 <div class="paper-title">
                     <a href="${paper.link}" target="_blank">${displayTitle}</a>
+                    ${paper.topic ? `<span style="color: #764ba2; font-size: 0.85rem; margin-left: 0.5rem;">📌 ${paper.topic}</span>` : ''}
                 </div>
                 <div class="paper-authors">
                     ${displayAuthors}
@@ -84,8 +105,8 @@ function displayPapers(papers) {
 }
 
 function filterPapers() {
-    const filter = document.getElementById('categoryFilter').value;
-    currentFilter = filter;
+    currentCategoryFilter = document.getElementById('categoryFilter').value;
+    currentTopicFilter = document.getElementById('topicFilter').value;
     applyFilters();
 }
 
@@ -104,10 +125,17 @@ function handleSearchInput(event) {
 function applyFilters() {
     let filtered = allPapers;
     
-    // Apply category filter
-    if (currentFilter !== 'all') {
+    // Apply topic filter
+    if (currentTopicFilter !== 'all') {
         filtered = filtered.filter(paper => 
-            paper.categories && paper.categories.includes(currentFilter)
+            paper.topic === currentTopicFilter
+        );
+    }
+    
+    // Apply category filter
+    if (currentCategoryFilter !== 'all') {
+        filtered = filtered.filter(paper => 
+            paper.categories && paper.categories.includes(currentCategoryFilter)
         );
     }
     
@@ -117,7 +145,8 @@ function applyFilters() {
             const titleMatch = paper.title.toLowerCase().includes(currentSearchQuery);
             const authorMatch = paper.authors.toLowerCase().includes(currentSearchQuery);
             const abstractMatch = paper.abstract.toLowerCase().includes(currentSearchQuery);
-            return titleMatch || authorMatch || abstractMatch;
+            const topicMatch = paper.topic && paper.topic.toLowerCase().includes(currentSearchQuery);
+            return titleMatch || authorMatch || abstractMatch || topicMatch;
         });
         
         // Update search info

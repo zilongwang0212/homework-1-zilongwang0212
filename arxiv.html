@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arXiv Paper Feed 📚</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .arxiv-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .arxiv-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .arxiv-header h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .arxiv-header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .paper-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .paper-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .paper-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .paper-title a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .paper-title a:hover {
+            text-decoration: underline;
+        }
+
+        .paper-authors {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .paper-date {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .paper-abstract {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .paper-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .paper-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        .paper-link:hover {
+            transform: scale(1.05);
+        }
+
+        .loading {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.2rem;
+            padding: 3rem;
+        }
+
+        .error {
+            text-align: center;
+            color: #e74c3c;
+            font-size: 1.1rem;
+            padding: 2rem;
+            background: #ffe6e6;
+            border-radius: 5px;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .filter-section label {
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .filter-section select {
+            padding: 0.5rem 1rem;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>💻 My Coding Blog</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pacman.html">Pac-Man Game</a></li>
+                <li><a href="arxiv.html" class="active">arXiv Papers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="arxiv-container">
+            <div class="arxiv-header">
+                <h2>📚 Latest arXiv Papers</h2>
+                <p>Auto-updated daily with the latest research in AI and Machine Learning</p>
+            </div>
+
+            <div class="last-updated" id="lastUpdated">
+                Loading...
+            </div>
+
+            <div class="filter-section">
+                <label for="categoryFilter">Filter by Category:</label>
+                <select id="categoryFilter" onchange="filterPapers()">
+                    <option value="all">All Papers</option>
+                    <option value="cs.AI">Artificial Intelligence</option>
+                    <option value="cs.LG">Machine Learning</option>
+                    <option value="cs.CV">Computer Vision</option>
+                    <option value="cs.CL">Computation and Language</option>
+                </select>
+            </div>
+
+            <div id="paperList" class="paper-list">
+                <div class="loading">Loading papers...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Coding Blog. Created with ❤️ and AI assistance.</p>
+    </footer>
+
+    <script src="arxiv.js"></script>
+</body>
+</html>

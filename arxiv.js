@@ -1,6 +1,7 @@
 // Load and display arXiv papers
 let allPapers = [];
 let currentFilter = 'all';
+let currentSearchQuery = '';
 
 async function loadPapers() {
     try {
@@ -30,44 +31,113 @@ function displayPapers(papers) {
     const paperList = document.getElementById('paperList');
     
     if (!papers || papers.length === 0) {
-        paperList.innerHTML = '<div class="error">No papers found. Please try again later.</div>';
+        if (currentSearchQuery) {
+            paperList.innerHTML = `
+                <div class="error">
+                    No papers found matching "${currentSearchQuery}". 
+                    <br><br>
+                    <span class="clear-search" onclick="clearSearch()" style="font-size: 1rem;">
+                        ✕ Clear search and show all papers
+                    </span>
+                </div>
+            `;
+        } else {
+            paperList.innerHTML = '<div class="error">No papers found. Please try again later.</div>';
+        }
         return;
     }
     
-    paperList.innerHTML = papers.map(paper => `
-        <div class="paper-card">
-            <div class="paper-title">
-                <a href="${paper.link}" target="_blank">${escapeHtml(paper.title)}</a>
+    paperList.innerHTML = papers.map(paper => {
+        // Highlight search terms if searching
+        let displayTitle = escapeHtml(paper.title);
+        let displayAuthors = escapeHtml(paper.authors);
+        let displayAbstract = escapeHtml(paper.abstract);
+        
+        if (currentSearchQuery) {
+            const regex = new RegExp(`(${currentSearchQuery})`, 'gi');
+            displayTitle = displayTitle.replace(regex, '<mark>$1</mark>');
+            displayAuthors = displayAuthors.replace(regex, '<mark>$1</mark>');
+            displayAbstract = displayAbstract.replace(regex, '<mark>$1</mark>');
+        }
+        
+        return `
+            <div class="paper-card">
+                <div class="paper-title">
+                    <a href="${paper.link}" target="_blank">${displayTitle}</a>
+                </div>
+                <div class="paper-authors">
+                    ${displayAuthors}
+                </div>
+                <div class="paper-date">
+                    Published: ${paper.published}
+                </div>
+                <div class="paper-abstract">
+                    ${displayAbstract}
+                </div>
+                <div class="paper-links">
+                    <a href="${paper.link}" target="_blank" class="paper-link">View on arXiv</a>
+                    <a href="${paper.pdfLink}" target="_blank" class="paper-link">📄 Download PDF</a>
+                </div>
             </div>
-            <div class="paper-authors">
-                ${escapeHtml(paper.authors)}
-            </div>
-            <div class="paper-date">
-                Published: ${paper.published}
-            </div>
-            <div class="paper-abstract">
-                ${escapeHtml(paper.abstract)}
-            </div>
-            <div class="paper-links">
-                <a href="${paper.link}" target="_blank" class="paper-link">View on arXiv</a>
-                <a href="${paper.pdfLink}" target="_blank" class="paper-link">📄 Download PDF</a>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function filterPapers() {
     const filter = document.getElementById('categoryFilter').value;
     currentFilter = filter;
-    
-    if (filter === 'all') {
-        displayPapers(allPapers);
-    } else {
-        const filtered = allPapers.filter(paper => 
-            paper.categories && paper.categories.includes(filter)
-        );
-        displayPapers(filtered);
+    applyFilters();
+}
+
+function searchPapers() {
+    const searchInput = document.getElementById('searchInput');
+    currentSearchQuery = searchInput.value.trim().toLowerCase();
+    applyFilters();
+}
+
+function handleSearchInput(event) {
+    if (event.key === 'Enter') {
+        searchPapers();
     }
+}
+
+function applyFilters() {
+    let filtered = allPapers;
+    
+    // Apply category filter
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(paper => 
+            paper.categories && paper.categories.includes(currentFilter)
+        );
+    }
+    
+    // Apply search query
+    if (currentSearchQuery) {
+        filtered = filtered.filter(paper => {
+            const titleMatch = paper.title.toLowerCase().includes(currentSearchQuery);
+            const authorMatch = paper.authors.toLowerCase().includes(currentSearchQuery);
+            const abstractMatch = paper.abstract.toLowerCase().includes(currentSearchQuery);
+            return titleMatch || authorMatch || abstractMatch;
+        });
+        
+        // Update search info
+        const searchInfo = document.getElementById('searchInfo');
+        searchInfo.innerHTML = `
+            Found ${filtered.length} paper(s) matching "${currentSearchQuery}"
+            <span class="clear-search" onclick="clearSearch()">✕ Clear search</span>
+        `;
+    } else {
+        document.getElementById('searchInfo').innerHTML = '';
+    }
+    
+    displayPapers(filtered);
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    currentSearchQuery = '';
+    document.getElementById('searchInfo').innerHTML = '';
+    applyFilters();
 }
 
 function escapeHtml(text) {

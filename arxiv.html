@@ -150,6 +150,75 @@
             font-size: 1rem;
             cursor: pointer;
         }
+
+        .search-section {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        .search-box button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .search-box button:hover {
+            transform: scale(1.05);
+        }
+
+        .search-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .clear-search {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #667eea;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+
+        .clear-search:hover {
+            color: #764ba2;
+        }
+
+        mark {
+            background-color: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -175,6 +244,19 @@
 
             <div class="last-updated" id="lastUpdated">
                 Loading...
+            </div>
+
+            <div class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search papers by title, authors, or abstract..." 
+                        onkeyup="handleSearchInput(event)"
+                    >
+                    <button onclick="searchPapers()">🔍 Search</button>
+                </div>
+                <div class="search-info" id="searchInfo"></div>
             </div>
 
             <div class="filter-section">

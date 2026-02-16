@@ -184,7 +184,15 @@ function update() {
     // Check collision with ghosts
     ghosts.forEach(ghost => {
         if (Math.abs(pacman.x - ghost.x) < 0.6 && Math.abs(pacman.y - ghost.y) < 0.6) {
-            loseLife();
+            if (powerUpActive) {
+                // Pac-Man is powered up - eat the ghost!
+                respawnGhost(ghost);
+                score += 200;
+                updateUI();
+            } else {
+                // Normal mode - ghost kills Pac-Man
+                loseLife();
+            }
         }
     });
     
@@ -313,6 +321,12 @@ function drawPacman() {
     const x = (pacman.x + pacman.moveProgress * [1, 0, -1, 0][pacman.direction]) * TILE_SIZE + TILE_SIZE / 2;
     const y = (pacman.y + pacman.moveProgress * [0, 1, 0, -1][pacman.direction]) * TILE_SIZE + TILE_SIZE / 2;
     
+    // Add glow effect when powered up
+    if (powerUpActive) {
+        ctx.shadowColor = '#FF1493';
+        ctx.shadowBlur = 15;
+    }
+    
     ctx.fillStyle = '#FFFF00';
     ctx.beginPath();
     
@@ -323,6 +337,9 @@ function drawPacman() {
     ctx.arc(x, y, TILE_SIZE / 2 - 2, startAngle, endAngle);
     ctx.lineTo(x, y);
     ctx.fill();
+    
+    // Reset shadow
+    ctx.shadowBlur = 0;
 }
 
 function drawGhost(ghost) {

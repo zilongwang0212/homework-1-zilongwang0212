@@ -73,7 +73,8 @@ const ghosts = [
 // Rose power-up
 let rose = null;
 let roseSpawnTimer = 0;
-const ROSE_SPAWN_INTERVAL = 600; // 10 seconds
+const ROSE_SPAWN_INTERVAL = 360; // 6 seconds (faster spawn)
+let lastHeartShot = 0;
 
 // Hearts (projectiles)
 let hearts = [];
@@ -162,10 +163,11 @@ function update() {
                 updateUI();
             }
             
-            // Check for rose
-            if (rose && pacman.x === rose.x && pacman.y === rose.y) {
+            // Check for rose (with better collision detection)
+            if (rose && Math.abs(pacman.x - rose.x) < 0.8 && Math.abs(pacman.y - rose.y) < 0.8) {
                 activatePowerUp();
                 rose = null;
+                roseSpawnTimer = 0; // Reset spawn timer
             }
         }
     }
@@ -193,19 +195,21 @@ function update() {
             powerUpActive = false;
             document.getElementById('powerUpIndicator').textContent = '';
         } else {
-            // Shoot hearts automatically
-            if (powerUpTimer % 15 === 0) { // Shoot every 0.25 seconds
+            // Shoot hearts more frequently (every 8 frames = ~0.13s at 60fps)
+            lastHeartShot++;
+            if (lastHeartShot >= 8) {
                 shootHeart();
+                lastHeartShot = 0;
             }
             document.getElementById('powerUpIndicator').textContent = 
-                `🌹 POWER-UP ACTIVE! ${Math.ceil(powerUpTimer / 60)}s 💕`;
+                `🌹 POWER-UP ACTIVE! ${Math.ceil(powerUpTimer / 60)}s 💕 Shooting Hearts!`;
         }
     }
     
     // Update hearts
     hearts = hearts.filter(heart => {
-        heart.x += heart.dx * 0.2;
-        heart.y += heart.dy * 0.2;
+        heart.x += heart.dx * 0.25; // Faster hearts
+        heart.y += heart.dy * 0.25;
         
         // Remove if out of bounds or hits wall
         if (heart.x < 0 || heart.x >= GRID_WIDTH || heart.y < 0 || heart.y >= GRID_HEIGHT) {
@@ -276,10 +280,17 @@ function draw() {
         }
     }
     
-    // Draw rose
+    // Draw rose (bigger and with pulsing effect)
     if (rose) {
-        ctx.font = '16px Arial';
-        ctx.fillText('🌹', rose.x * TILE_SIZE + 2, rose.y * TILE_SIZE + 16);
+        const pulseSize = 20 + Math.sin(Date.now() / 200) * 3;
+        ctx.font = `${pulseSize}px Arial`;
+        ctx.fillText('🌹', rose.x * TILE_SIZE, rose.y * TILE_SIZE + 18);
+        
+        // Add glow effect
+        ctx.shadowColor = '#FF69B4';
+        ctx.shadowBlur = 10;
+        ctx.fillText('🌹', rose.x * TILE_SIZE, rose.y * TILE_SIZE + 18);
+        ctx.shadowBlur = 0;
     }
     
     // Draw Pac-Man
@@ -288,10 +299,13 @@ function draw() {
     // Draw ghosts
     ghosts.forEach(ghost => drawGhost(ghost));
     
-    // Draw hearts
+    // Draw hearts (bigger and with trail effect)
     hearts.forEach(heart => {
-        ctx.font = '14px Arial';
-        ctx.fillText('💕', heart.x * TILE_SIZE, heart.y * TILE_SIZE + 14);
+        ctx.font = '16px Arial';
+        ctx.shadowColor = '#FF1493';
+        ctx.shadowBlur = 8;
+        ctx.fillText('💕', heart.x * TILE_SIZE - 2, heart.y * TILE_SIZE + 16);
+        ctx.shadowBlur = 0;
     });
 }
 
@@ -407,8 +421,13 @@ function spawnRose() {
 function activatePowerUp() {
     powerUpActive = true;
     powerUpTimer = POWER_UP_DURATION;
+    lastHeartShot = 0; // Start shooting immediately
     score += 100;
     updateUI();
+    
+    // Play a visual celebration (optional, can add sound later)
+    document.getElementById('powerUpIndicator').style.fontSize = '24px';
+    document.getElementById('powerUpIndicator').style.color = '#FF1493';
 }
 
 function shootHeart() {
@@ -456,6 +475,8 @@ function resetPositions() {
     
     hearts = [];
     powerUpActive = false;
+    lastHeartShot = 0;
+    document.getElementById('powerUpIndicator').textContent = '';
 }
 
 function checkWin() {

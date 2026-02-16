@@ -1,0 +1,319 @@
+# GitHub Actions Workflow Configuration
+# File: .github/workflows/update-papers.yml
+# Purpose: Automate daily updates of arXiv research papers
+# Agent Type: Workflow Orchestrator Agent
+
+# =============================================================================
+# WORKFLOW METADATA
+# =============================================================================
+
+name: Update arXiv Papers
+# Display name shown in GitHub Actions UI
+# Visible in: Actions tab → Workflow list
+
+# =============================================================================
+# TRIGGER CONFIGURATION
+# =============================================================================
+
+on:
+  # Scheduled trigger - Runs automatically based on cron schedule
+  schedule:
+    # Cron syntax: minute hour day month weekday
+    # '0 0 * * *' = Every day at 00:00 UTC (midnight)
+    # Can be tested at: https://crontab.guru/
+    - cron: '0 0 * * *'
+  
+  # Manual trigger - Allows on-demand execution
+  workflow_dispatch:
+  # Enable this to run workflow manually from GitHub Actions UI
+  # Usage: Actions tab → Select workflow → Run workflow button
+  # Useful for testing and immediate updates
+
+# =============================================================================
+# JOB DEFINITION
+# =============================================================================
+
+jobs:
+  update-papers:
+    # Job name (can be referenced by other jobs if using job dependencies)
+    
+    # Runner specification
+    runs-on: ubuntu-latest
+    # Options: ubuntu-latest, ubuntu-22.04, ubuntu-20.04, windows-latest, macos-latest
+    # ubuntu-latest is recommended for Python workflows
+    
+    # =============================================================================
+    # PERMISSIONS
+    # =============================================================================
+    
+    permissions:
+      contents: write
+      # CRITICAL: Required for git push to work
+      # Without this, workflow fails with "permission denied to github-actions[bot]"
+      # Options:
+      #   - read: Can only read repository contents
+      #   - write: Can commit and push changes (needed here)
+      # Scope: Limited to this repository only
+    
+    # =============================================================================
+    # WORKFLOW STEPS
+    # =============================================================================
+    
+    steps:
+      # ---------------------------------------------------------------------------
+      # STEP 1: Repository Checkout
+      # ---------------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # Action: Official GitHub action to clone repository
+        # Version: v4 (latest stable, auto-updates minor versions)
+        # What it does:
+        #   - Clones repository to runner's workspace
+        #   - Checks out the default branch (main/master)
+        #   - Sets up git configuration
+        # Output: Repository files available in current directory
+      
+      # ---------------------------------------------------------------------------
+      # STEP 2: Python Environment Setup
+      # ---------------------------------------------------------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        # Action: Official GitHub action for Python installation
+        # Version: v5 (latest stable)
+        with:
+          python-version: '3.11'
+          # Python version to install
+          # Options: '3.8', '3.9', '3.10', '3.11', '3.12'
+          # Chosen 3.11 for:
+          #   - Modern features (e.g., improved error messages)
+          #   - Good library compatibility
+          #   - Performance improvements
+        # What it does:
+        #   - Downloads and installs Python 3.11
+        #   - Adds python/pip to PATH
+        #   - Configures pip cache for faster installs
+        # Output: python3 and pip commands available
+      
+      # ---------------------------------------------------------------------------
+      # STEP 3: Dependency Installation
+      # ---------------------------------------------------------------------------
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+        # Multi-line shell command
+        # Line 1: Upgrade pip to latest version (recommended practice)
+        # Line 2: Install requests library for HTTP API calls
+        # Why requests?
+        #   - De facto standard for HTTP in Python
+        #   - Simple, elegant API
+        #   - Handles errors gracefully
+        #   - Required by fetch_papers.py
+        # Alternative: Could use requirements.txt:
+        #   pip install -r requirements.txt
+      
+      # ---------------------------------------------------------------------------
+      # STEP 4: Execute Data Fetcher Agent
+      # ---------------------------------------------------------------------------
+      - name: Fetch arXiv papers
+        run: |
+          python fetch_papers.py
+        # Executes the Python script that:
+        #   1. Calls arXiv API with search query
+        #   2. Parses XML response
+        #   3. Extracts paper metadata
+        #   4. Saves to papers.json
+        # Execution context:
+        #   - Working directory: Repository root
+        #   - Python version: 3.11 (from step 2)
+        #   - Dependencies: requests (from step 3)
+        # Error handling:
+        #   - If script fails (non-zero exit code), workflow fails
+        #   - Error logs visible in Actions tab
+        #   - GitHub sends notification email to repo owner
+      
+      # ---------------------------------------------------------------------------
+      # STEP 5: Git Commit and Push
+      # ---------------------------------------------------------------------------
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add papers.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update arXiv papers - $(date +'%Y-%m-%d %H:%M:%S')" && git push)
+        
+        # Line-by-line breakdown:
+        
+        # Line 1-2: Configure Git User Identity
+        #   - Required for git commits
+        #   - Uses GitHub Actions bot identity
+        #   - Email: Special address recognized by GitHub
+        #   - Name: Shows as "github-actions[bot]" in commits
+        #   - Scope: --local means only for this repository
+        
+        # Line 3: Stage Changes
+        #   - git add papers.json
+        #   - Stages ONLY papers.json for commit
+        #   - Other files are ignored (e.g., __pycache__, .DS_Store)
+        
+        # Line 4: Conditional Commit and Push
+        #   - Complex bash command with conditional logic
+        #   - Breakdown:
+        #     1. 'git diff --quiet' - Check if working tree has changes
+        #     2. '&&' - AND operator (short-circuit)
+        #     3. 'git diff --staged --quiet' - Check if staging area has changes
+        #     4. '||' - OR operator (if previous commands fail/find changes)
+        #     5. '(...)' - Group commands to run if changes exist
+        #     6. 'git commit -m "..."' - Commit with timestamped message
+        #     7. '$(date +'%Y-%m-%d %H:%M:%S')' - Inject current timestamp
+        #     8. '&&' - AND operator (only push if commit succeeds)
+        #     9. 'git push' - Push to remote repository
+        
+        # Logic flow:
+        #   - If no changes: Commands succeed (exit 0), nothing happens
+        #   - If changes exist: Commands fail (exit 1), run commit and push
+        
+        # Why this approach?
+        #   - Avoids empty commits (cleaner history)
+        #   - Only updates when data actually changes
+        #   - Reduces unnecessary GitHub Pages rebuilds
+        
+        # Timestamp format:
+        #   - YYYY-MM-DD HH:MM:SS (e.g., "2026-02-16 00:00:15")
+        #   - Easy to read and sort
+        #   - Helps track update frequency
+
+# =============================================================================
+# WORKFLOW EXECUTION FLOW
+# =============================================================================
+
+# When triggered (daily or manually):
+#   1. GitHub Actions provisions Ubuntu VM
+#   2. Clones repository to VM
+#   3. Installs Python 3.11
+#   4. Installs dependencies (requests)
+#   5. Runs fetch_papers.py
+#      ├─ Fetches data from arXiv API
+#      ├─ Parses XML response
+#      └─ Writes papers.json
+#   6. Checks if papers.json changed
+#   7. If changed:
+#      ├─ Commits with timestamp
+#      └─ Pushes to GitHub
+#   8. GitHub Pages automatically redeploys (if enabled)
+#   9. VM is destroyed
+#
+# Total time: ~30-60 seconds
+# Cost: $0 (free for public repositories)
+
+# =============================================================================
+# AGENT INTERACTIONS
+# =============================================================================
+
+# This workflow acts as the "Orchestrator Agent" coordinating:
+#
+#   ┌─────────────────────────────────────────┐
+#   │   Workflow Orchestrator Agent           │
+#   │   (.github/workflows/update-papers.yml) │
+#   └─────────────────┬───────────────────────┘
+#                     │
+#        ┌────────────┼────────────┐
+#        ▼            ▼            ▼
+#   ┌─────────┐ ┌──────────┐ ┌─────────┐
+#   │ Fetcher │ │ Storage  │ │ Display │
+#   │  Agent  │ │  Agent   │ │  Agent  │
+#   │ (fetch_ │ │ (papers. │ │ (arxiv. │
+#   │ papers. │ │  json)   │ │  html/  │
+#   │  py)    │ │          │ │  js)    │
+#   └─────────┘ └──────────┘ └─────────┘
+#
+# Data flow:
+#   1. Orchestrator triggers Fetcher
+#   2. Fetcher writes to Storage
+#   3. Orchestrator commits Storage
+#   4. Display reads from Storage (on user request)
+
+# =============================================================================
+# CUSTOMIZATION GUIDE
+# =============================================================================
+
+# To modify update frequency:
+#   - Change cron expression in 'schedule' section
+#   - Examples:
+#     * '0 */6 * * *' - Every 6 hours
+#     * '0 0 * * 1' - Every Monday at midnight
+#     * '0 0 1 * *' - First day of every month
+
+# To add email notifications:
+#   - Add step after commit:
+#       - name: Send notification
+#         if: success()
+#         run: echo "Papers updated successfully"
+
+# To add error handling:
+#   - Add step with 'if: failure()':
+#       - name: Handle errors
+#         if: failure()
+#         run: |
+#           echo "Workflow failed"
+#           # Add recovery logic here
+
+# To test locally:
+#   $ act -j update-papers
+#   (Requires 'act' tool: https://github.com/nektos/act)
+
+# =============================================================================
+# TROUBLESHOOTING
+# =============================================================================
+
+# Common issues and solutions:
+
+# Issue 1: "permission denied to github-actions[bot]"
+# Solution: Add 'permissions: contents: write' to job
+
+# Issue 2: Script fails with "ModuleNotFoundError: No module named 'requests'"
+# Solution: Ensure 'pip install requests' is in dependencies step
+
+# Issue 3: Workflow doesn't run on schedule
+# Solution: 
+#   - Check if repository is active (make a commit)
+#   - Verify cron syntax at crontab.guru
+#   - Check Actions tab for disabled workflows
+
+# Issue 4: Empty commits being made
+# Solution: Verify conditional commit logic in step 5
+
+# Issue 5: papers.json not updating
+# Solution:
+#   - Check fetch_papers.py for errors
+#   - Verify arXiv API is accessible
+#   - Check Actions logs for Python errors
+
+# =============================================================================
+# SECURITY NOTES
+# =============================================================================
+
+# This workflow is secure because:
+#   ✓ Uses official GitHub actions only
+#   ✓ No secrets or credentials required
+#   ✓ Minimal permissions (contents: write only)
+#   ✓ All dependencies explicitly listed
+#   ✓ No third-party actions
+#   ✓ All code is version controlled
+#   ✓ Runs in isolated VM (destroyed after)
+
+# =============================================================================
+# MONITORING
+# =============================================================================
+
+# How to monitor this workflow:
+#   1. GitHub Actions tab shows all runs
+#   2. Green checkmark = Success
+#   3. Red X = Failure (click for logs)
+#   4. Email notifications on failure (default)
+#   5. Can set up status badges in README
+#   6. API available for programmatic monitoring
+
+# =============================================================================
+# END OF CONFIGURATION
+# =============================================================================

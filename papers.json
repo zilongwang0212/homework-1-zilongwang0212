@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-25T04:25:09.027139",
+  "lastUpdated": "2026-05-26T04:11:01.266106",
   "topics": {
     "ai_ml": {
       "name": "AI & Machine Learning",
@@ -20,12 +20,24 @@
   },
   "papers": [
     {
-      "title": "SkillOpt: Executive Strategy for Self-Evolving Agent Skills",
-      "authors": "Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, et al.",
-      "abstract": "Agent skills today are hand-crafted, generated one-shot, or evolved through loosely controlled self-revision, none of which behaves like a deep-learning optimizer for the skill, and none of which reliably improves over its starting point under feedback. We argue the skill should instead be trained as the external state of a frozen agent, with the same discipline that makes weight-space optimization reproducible. SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score. A textual learning-rate budget, rejected-edit buffer, and epoch-wise slow/meta update make skill training stable while adding zero inference-time model calls at deployment. Across six benchmarks, seven target models, and three execution harnesses (direct chat, Codex, Claude Code), SkillOpt is best or tied on all 52 evaluated (model, benchmark, harness) cells and beats every per-cell competitor among human, one-shot LLM, Trace2Skill, TextGrad, GEPA, and EvoSkill skills. On GPT-5.5 it lifts the average no-skill accuracy by +23.5 points in direct chat, by +24.8 inside the Codex agentic loop, and by +19.1 inside Claude Code. Transfer experiments further show that optimized skill artifacts retain value when moved across model scales, between Codex and Claude Code execution environments, and to a nearby math benchmark without further optimization.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23904v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23904v1.pdf",
+      "title": "TriSplat: Simulation-Ready Feed-Forward 3D Scene Reconstruction",
+      "authors": "Weijie Wang, Zimu Li, Jinchuan Shi, Zeyu Zhang, Botao Ye, et al.",
+      "abstract": "Sparse-view 3D reconstruction is increasingly addressed with feed-forward splatting networks that predict explicit primitives directly from images. Yet most existing methods remain centered on Gaussian primitives and expose surfaces only indirectly: extracting a usable mesh for downstream simulation, physics reasoning, or embodied interaction still requires expensive post-hoc steps that break the feed-forward promise. This limitation is especially pronounced in pose-free settings, where scene structure and camera parameters must be estimated jointly from sparse observations. We present TriSplat, a feed-forward reconstruction network that represents scenes with oriented triangle primitives and directly exports simulation-ready mesh scenes from a single forward pass. Given input images, the network predicts local 3D point maps, triangle attributes, camera poses, and optional intrinsics. Rather than regressing triangle orientation as an unconstrained latent variable, our approach constructs geometry normals from the predicted point maps, refines them with an image-conditioned normal head, and converts them into stable local frames for triangle parameterization. A mono-normal bootstrap schedule further stabilizes early training, while opacity and blur scheduling progressively sharpens the learned surface representation for direct mesh extraction. Experiments on RealEstate10K and DL3DV show that this representation produces more geometry-faithful reconstructions than Gaussian feed-forward baselines while maintaining competitive novel-view rendering quality. Because the rendering primitives are themselves surface triangles, the output can be directly ingested by physics engines, collision detectors, and standard rendering pipelines without any conversion, making it a practical simulation-ready solution for feed-forward 3D scene reconstruction.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26115v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26115v1.pdf",
+      "categories": [
+        "cs.CV"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research",
+      "authors": "Dingbang Wu, Rui Hao, Haiyang Wang, Shuzhe Wu, Han Xiao, et al.",
+      "abstract": "We present MobileGym, a browser-hosted, lightweight, fully controllable environment for everyday mobile use, targeting interaction fidelity without replicating proprietary backends. It enables two capabilities previously out of reach for everyday apps: verifiable outcome signals through deterministic state-based judging over structured JSON state, and scalable online RL through low-cost parallel rollouts. The full environment state is captured, configured, forked, and compared as structured JSON, and a single server can host hundreds of parallel instances, with about 400 MB memory per instance and about 3 s cold start. A layered state model and a declarative task-definition framework keep state programmability and task creation practical at scale, and a single programmatic judging mechanism delivers both deterministic evaluation verdicts and dense RL rewards. The accompanying MobileGym-Bench provides 416 parameterized task templates, including 256 test and 160 train templates, over 28 apps, with deterministic judges and a structured AnswerSheet protocol that avoids free-text matching failures. In a Sim-to-Real case study, GRPO on Qwen3-VL-4B-Instruct gains +12.8 percentage points on the 256-task test set, and on a 59-task real-device signal subset, real-device execution retains 95.1% of the simulation-side training gain. Project page: https://mobilegym.github.io.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26114v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26114v1.pdf",
       "categories": [
         "cs.AI",
         "cs.CL"
@@ -33,167 +45,130 @@
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "Geo-Align: Video Generation Alignment via Metric Geometry Reward",
-      "authors": "Zizun Li, Haoyu Guo, Runzhe Teng, Chunhua Shen, Tong He",
-      "abstract": "Camera-controlled video generation has achieved remarkable progress in recent years. However, existing video-to-video re-rendering methods primarily rely on Supervised Fine-Tuning using synthetic datasets. At present, there is an extreme scarcity of synchronized, multi-view real-world video data. Consequently, the prevailing paradigm often exhibits limited generalization when processing out-of-distribution real-world videos, with models struggling to accurately adhere to physical scales and camera trajectories. To bridge this gap, we propose Geo-Align, the first Reinforcement Learning framework specifically designed for camera-controlled video re-rendering. Built upon a pretrained model, we optimize the model through a scale-aware perceptual reward mechanism. Specifically, we introduce a metric 3D estimator to extract precise camera trajectories from generated videos, explicitly penalizing deviations in rotation and translation. Furthermore, we meticulously designed a data pipeline strategy based on real-world conditioning videos and target camera trajectories derived from synthetic data, eliminating the reliance on paired data. Extensive experiments demonstrate that Geo-Align consistently outperforms existing supervised learning baselines in both precise camera controllability and visual fidelity, indicating the effectiveness of our method.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23903v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23903v1.pdf",
+      "title": "AnyScene: Towards Highly Controllable Driving Scene Generation at Anywhere and Beyond",
+      "authors": "Haiming Zhang, Junfei Zhou, Feng Jiang, Jingzhong Li, Zhenglong Guo, et al.",
+      "abstract": "Generating high-fidelity and controllable synthetic data is critical for advancing end-to-end autonomous driving, particularly for addressing the long tail of rare safety-critical scenarios. Existing occupancy-guided methods typically rely on shallow conditioning mechanisms and reference-frame-dependent video synthesis, which limits fine-grained controllability from arbitrary BEV layouts and restricts their applicability for scalable simulation. In this paper, we propose AnyScene, a unified occupancy-centric framework for driving scene generation. AnyScene generates semantic occupancy sequences from BEV layouts through a Spatial-Temporal Occupancy Diffusion Transformer that jointly tokenizes BEV and occupancy features in an autoregressive manner. This design enables precise controllability from cross-dataset and user-defined BEV inputs while naturally supporting long-horizon generation. Building upon the generated occupancy, a Geometry-Grounded View Expansion module treats occupancy as the canonical spatial representation and synthesizes temporally consistent multi-view driving videos in a reference-free and autoregressive fashion, supporting flexible camera configurations at inference time. Extensive experiments demonstrate that AnyScene achieves state-of-the-art performance in both occupancy and video generation. It exhibits strong generalization to unseen and customized layouts, and provides measurable benefits for downstream tasks such as sparse-view 3D reconstruction.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26113v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26113v1.pdf",
       "categories": [
+        "cs.RO",
         "cs.CV"
       ],
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "PiD: Fast and High-Resolution Latent Decoding with Pixel Diffusion",
-      "authors": "Yifan Lu, Qi Wu, Jay Zhangjie Wu, Zian Wang, Huan Ling, et al.",
-      "abstract": "Most practical high-resolution text-to-image systems, including latent diffusion and autoregressive models, perform generation in a compact latent space, and a decoder maps the generated latents back to pixels. Yet the latent-to-pixel decoder is reconstruction-oriented, optimized to invert the encoder rather than synthesize more details, and becomes increasingly costly at megapixel scale. This drawback calls for a more expressive and efficient decoding paradigm. Motivated by recent progress in scalable pixel-space diffusion, we introduce PiD, a Pixel diffusion Decoder that reformulates latent decoding as conditional pixel diffusion, unifying decoding and upsampling into one generative module. By denoising directly in high-resolution pixel space, PiD synthesizes $4\\times$ and even $8\\times$ upscaled images with low latency. For latent conditioning, a lightweight sigma-aware adapter injects noise-corrupted latents into the pixel diffusion backbone, enabling PiD to decode partially denoised latents and terminate the latent diffusion process early. To further improve efficiency, we distill the model using DMD2, reducing inference to just 4 steps. PiD applies to both conventional VAE latents and semantic latents (e.g., SigLIP, DINOv2) used in recent RAE-based models. PiD decodes latents of $512 \\times 512$ images into $2048 \\times 2048$ pixels in under 1 second with 13 GB peak memory on a consumer RTX 5090, and as fast as 210 ms on a GB200 GPU, about $6\\times$ faster than cascaded diffusion-based super-resolution pipelines with better visual fidelity.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23902v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23902v1.pdf",
+      "title": "From Model Scaling to System Scaling: Scaling the Harness in Agentic AI",
+      "authors": "Shangding Gu",
+      "abstract": "This paper studies the next major bottleneck in agentic AI as system scaling, not only model scaling: the design of auditable, persistent, modular, and verifiable architectures around foundation models. We refer to this shift as scaling the harness: treating the structured execution layer around a foundation model as a first-class object of design, evaluation, and optimization. Although recent large language models enable agents to use tools, retrieve information, maintain memory, and execute long-horizon workflows, evaluation remains largely model-centric, often reducing agents to final-task success while treating memory, retrieval, tool use, orchestration, verification, and governance as secondary implementation details. This framing is increasingly inadequate because agent performance emerges from the interaction among the foundation model, memory substrate, context constructor, skill-routing layer, orchestration loop, and verification-and-governance layer. Together, these components form the agent harness, which translates model capability into long-horizon agent behavior. We study scaling the harness through three core bottlenecks: context governance, trustworthy memory, and dynamic skill routing, together with the orchestration and governance mechanisms that coordinate and constrain them. We further outline a research agenda for harness-level benchmarks that go beyond one-shot task success to measure trajectory quality, memory hygiene, context efficiency, communication fidelity, verification cost, and safe evolution over time. To make the discussion concrete, we develop CheetahClaws: https://github.com/SafeRL-Lab/cheetahclaws, a Python-native reference harness, and compare it with Claude Code and OpenClaw. Our main claim is that future progress in agentic AI will depend as much on system design as on stronger foundation models.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26112v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26112v1.pdf",
       "categories": [
-        "cs.CV"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "LLMs as Noisy Channels: A Shannon Perspective on Model Capacity and Scaling Laws",
-      "authors": "Xu Ouyang, Deyi Liu, Yuhang Cai, Jing Liu, Yuan Yang, et al.",
-      "abstract": "Existing scaling laws for Large Language Models (LLMs), predominantly monotonic power laws, fail to explain emerging non-monotonic phenomena such as catastrophic overtraining and quantization-induced degradation, where performance deteriorates despite increased compute.   We propose the Shannon Scaling Law, a unified theoretical framework that models LLM training as information transmission over a noisy channel, grounded in the Shannon-Hartley theorem. By mapping model parameters to channel bandwidth and training tokens to signal power, our formulation explicitly captures the interaction between learning signal and intrinsic noise. This perspective reveals a fundamental Shannon capacity for LLMs: scaling model size or data without preserving a sufficient signal-to-noise ratio (SNR) inevitably amplifies noise, inducing a transition from monotonic improvement to U-shaped performance degradation.   We validate our theory through experiments on Pythia and OLMo2 under perturbations, including Gaussian noise, quantization and supervised fine-tuning on math, QA and code tasks. The Shannon Scaling Law consistently outperforms classical scaling laws and recent perturbation-aware laws, achieving strong $R^2$ scores and accurately capturing loss basins missed by prior approaches. It also extrapolates: fitted on $\\leq$6.9B Pythia models with $\\leq$180B tokens, it predicts the unseen 12B model up to 307B tokens at pooled $R^2{=}0.847$, while monotonic baselines collapse.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23901v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23901v1.pdf",
-      "categories": [
-        "cs.LG",
         "cs.AI",
-        "cs.IT"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "From Raw Experience to Skill Consumption: A Systematic Study of Model-Generated Agent Skills",
-      "authors": "Zisu Huang, Jingwen Xu, Yifan Yang, Ziyang Gong, Qihao Yang, et al.",
-      "abstract": "Language agents increasingly improve by reusing \\emph{skills} -- structured procedural artifacts distilled from past experience. In particular, \\emph{domain-level} and \\emph{model-generated} skills are especially promising. They offer fast adaptation within a domain by encoding domain-specific recurring procedures, and they scale beyond labor-intensive hand-crafting. However, while extraction methods continue to proliferate, understanding remains limited, with no comprehensive study spanning the full skill lifecycle -- \\textbf{experience generation}, \\textbf{skill extraction}, and \\textbf{skill consumption} -- to ask whether such skills actually work, when they work, and what makes them succeed or fail. To close this gap, we build a utility-grounded evaluation framework that provides systematic experimental results across extractors and target agents, covering five diverse agentic task domains. We find that model-generated skills are beneficial on average but exhibit non-trivial negative transfer, and that neither extractors nor targets behave uniformly. A model can be a strong extractor yet a weak consumer, or vice versa, with skill utility independent of model scale or baseline task strength. To explain these patterns, we then dissect each lifecycle stage in depth, analyzing how experience composition shapes skill quality, what properties characterize useful skills, and how the same skill transfers across different consumers. Finally, we translate these findings into a concrete \\emph{meta-skill} that guides skill extraction toward the features tied to actual utility, which consistently improves skill quality across domains and substantially reduces negative transfer.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23899v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23899v1.pdf",
-      "categories": [
-        "cs.AI"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "SPACENUM: Revisiting Spatial Numerical Understanding in VLMs",
-      "authors": "Jianshu Zhang, Yijiang Li, Huifeixin Chen, Haoran Lu, Letian Xue, et al.",
-      "abstract": "Vision-Language Models (VLMs) are increasingly deployed in embodied environments, where they need produce numerical outputs such as action magnitudes and spatial coordinates. Although these numbers appear meaningful, it remains unclear whether these numerical outputs are genuinely grounded in spatial perception. Therefore, in this work, we revisit spatial numerical understanding through SpaceNum, a unified framework that captures two complementary settings: numbers as dynamic transitions during spatial exploration, and numbers as static layouts in spatial reasoning. We formulate two bidirectional tasks, Num2Space and Space2Num, to evaluate how well VLMs map between vision-side spatial structure and language-side numerical representations. We systematically study whether current VLMs truly understand numerical values in spatial settings. Across dynamic transitions and static layouts, we find that models largely fail to ground numbers in spatial meaning and often perform close to random guess. Through error analysis, reasoning trace analysis, and controlled interventions, we show that current VLMs rely heavily on shallow spatial cues, struggle to build stable coordinate-aware representations, and fail to abstract structured spatial layouts from visual observations. We further show that explicit reasoning provides only marginal gains, while tuning can partially improve spatial numerical understanding and transfer to external spatial reasoning benchmarks.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23898v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23898v1.pdf",
-      "categories": [
-        "cs.AI"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "ETCHR: Editing To Clarify and Harness Reasoning",
-      "authors": "Beichen Zhang, Yuhong Liu, Jinsong Li, Yuhang Zang, Jiaqi Wang, et al.",
-      "abstract": "Multimodal Large Language Models have advanced visual reasoning, yet a purely textual chain of thought remains a bottleneck for questions that require fine-grained focus or view transformations. The ''think with images'' paradigm narrows this gap, but existing approaches are either constrained by fixed predefined toolkits or produce noisy intermediate images from unified multimodal methods. We pursue a third option: using a dedicated image editing model and decouple it with an understanding model. However, off-the-shelf image editors fail as reasoning assistants with two complementary gaps: a language-side gap, where editors trained as passive instruction-followers cannot map an abstract question to an appropriate visual transformation, and a generation-side gap, where edit correctness degrades as reasoning depth grows. Guided by this analysis, we introduce ETCHR (Editing To Clarify and Harness Reasoning), a question-conditioned, reasoning-aware image editor decoupled from the downstream understanding model and trained with a two-stage recipe targeted at the two gaps: Reasoning Imitation via supervised fine-tuning on edit trajectories, followed by Reasoning Enhancement with VLM-derived rewards for edit correctness and downstream reasoning accuracy. Since the editor is decoupled, ETCHR plugs into different open- and closed-source MLLMs in a training-free manner. Across five task families (fine-grained perception, chart understanding, logic reasoning, jigsaw restoration, and 3D understanding), ETCHR raises average Pass@1 from 55.95 to 60.77 (+4.82) with Qwen3-VL-8B, from 65.08 to 70.55 (+5.47) with Gemini-3.1-Flash-Lite, and from 76.55 to 81.16 (+4.61) with the 1T-parameter MoE model Kimi K2.5.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23897v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23897v1.pdf",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.CL"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "From Activation to Causality: Discovery of Causal Visual Representations in the Human Brain",
-      "authors": "Yuval Golbari, Navve Wasserman, Matias Cosarinsky, Roman Beliy, Aude Oliva, et al.",
-      "abstract": "Identifying which brain regions represent a visual concept in the human brain is a central challenge in neuroscience. Existing approaches have localized coarse functional regions (e.g., faces, places) through activation maximization, identifying regions that activate strongly for a target concept relative to other concepts. Yet strong activation alone does not establish that a region represents the concept itself, as responses may instead be driven by correlated visual or semantic cues. We introduce BrainCause, an automated framework that combines generative and brain models to synthesize controlled stimuli and validate neural representations through targeted causal testing. Given a query specifying a concept of interest, our framework constructs targeted stimulus sets comprising concept images, counterfactual edits that remove the target concept while preserving other image content, and images with candidate correlated distractors. It then uses an image-to-fMRI encoding model to predict brain responses and searches for representations that respond specifically to the target concept over correlated alternatives. BrainCause returns validated candidate representations and proposes follow-up fMRI experiments to further test or extend its discoveries. Our approach successfully recovers known functional localizations and identifies new candidate representations across dozens of concepts, validated on both predicted and measured fMRI data. Critically, we show that without causal validation, a large fraction of localizations would be false positives, confirming that activation alone is insufficient evidence of representation.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23895v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23895v1.pdf",
-      "categories": [
-        "cs.CV"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "Complete-muE: Optimal Hyperparameter Transfer and Scaling for MoE Models",
-      "authors": "Hongwu Peng, Ohiremen Dibua, Yuanjun Xiong, Yifan Gong, Jianming Zhang, et al.",
-      "abstract": "We propose Complete-muE, a framework which targets hyperparameter transfer across dense FFN and any Mixture-of-Experts (MoE) setups in transformer blocks. Existing tools such as $μ$P (requires fixed architectue) or SDE (requires fixed per-step token count) cannot directly solve the hyperparameter transfer problem in MoE setups because Dense to MoE transfer or MoE total experts scaling changes both architecture and tokens per expert. Complete-muE solves this challenge with a two-bridge system: Bridge~I maps between dense FFN and Dense MoE by active-width $μ$P with a normalized router scale. Bridge~II maps between Dense MoE and sparse MoE by activated-expert scaling, where the first-order SDE LR/WD correction cancels while a bounded residual $σ_0$ shift remains. The resulting transfer rule, which we term as Complete muE, covers changes in activated experts, total capacity, granularity, and shared/group-balanced hybrids for MoE models as well as network width/depth, batch size, and duration changes for general Transformer models. Extensive language model and diffusion model pretraining experiments confirm that complete-muE yields relatively stable hyperparameter optima across model architectures and parameter counts -- with only minor drift consistent with the non-strict SDE behavior of Bridge~II. In practice this drift is small enough that hyperparameters tuned on a single dense reference transfer near-optimally to all MoE configurations -- \\emph{tune dense once, transfer to all} is the practical recipe at the core of Complete-muE. This enables MoE models to achieve accelerated convergence speedup over dense models when scaling model capacity without costly hyperparameter search.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23893v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23893v1.pdf",
-      "categories": [
         "cs.LG"
       ],
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "Good Token Hunting: A Hitchhiker's Guide to Token Selection for Visual Geometry Transformers",
-      "authors": "Shuhong Zheng, Michael Oechsle, Erik Sandström, Marie-Julie Rakotosaona, Federico Tombari, et al.",
-      "abstract": "Visual geometry transformers have become powerful architectures for multi-view 3D reconstruction, enabling joint prediction of multiple 3D attributes in a feed-forward manner. However, their computational cost grows quadratically with the input sequence length due to the global attention layers inside these models. This limits both their scalability and efficiency. In this work, we address this challenge with a simple yet general strategy: restricting the number of key/value tokens that each query interacts with during global attention. To achieve effective token selection, we introduce a two-stage framework. First, an inter-frame selection step operates at the frame level to identify frames that should be preserved. Second, an intra-frame selection step further discards more redundant tokens within the selected frames. Our analysis highlights the advantage of a diversity-based strategy for inter-frame selection, which ensures broad coverage of the scene. For intra-frame selection, we show that layer-aware sparsification is necessary, with the selection process guided by the entropy of the global attention pattern. Our approach offers a superior speed-accuracy trade-off compared to existing solutions. Extensive experiments show that it accelerates visual geometry transformers by over 85% for scenes with 500 images while maintaining, or even improving, baseline performance, which hints that how our token selection strategy can play a crucial role in future applications of visual geometry transformers. Our project website is available at https://zsh2000.github.io/good-token-hunting.github.io.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23892v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23892v1.pdf",
+      "title": "Squeezing Capacity from Multimodal Large Language Models for Subject-driven Generation",
+      "authors": "Shuhong Zheng, Aashish Kumar Misraa, Yu-Teng Li, Yu-Jhe Li, Igor Gilitschenski",
+      "abstract": "Subject-driven image generation aims to synthesize new images that preserve the identity of the given subject while following textual instructions. Existing approaches often encode text and reference images separately. This limits cross-modal reasoning abilities and causes copy-paste artifacts. Recent frameworks that connect multimodal models and diffusion models improve instruction following, but largely overlook identity preservation. To address these limitations, we condition diffusion models on Multimodal Large Language Models (MLLMs) that jointly encode text and reference images, and augment it with VAE-based identity conditioning. A novel Dual Layer Aggregation (DLA) module is designed to aggregate multi-level MLLM features for optimal conditioning, and a multi-stage denoising strategy is applied to progressively balance the semantic information from MLLM and fine-detail identity from VAE during inference. Extensive experiments demonstrate that our approach harmonizes multimodal understanding with identity preservation, mitigates copy-paste issues, and achieves superior performance regarding human preference on subject-driven image generation. Our project website is available at https://zsh2000.github.io/squeeze-mllm-subject-gen/.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26111v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26111v1.pdf",
       "categories": [
         "cs.CV",
         "cs.AI",
         "cs.GR",
         "cs.LG",
-        "cs.RO"
+        "cs.MM"
       ],
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "Leveraging Foundation Models for Causal Generative Modeling",
-      "authors": "Aneesh Komanduri, Xintao Wu",
-      "abstract": "Causal generative modeling is essential for developing reliable and transparent AI systems capable of counterfactual reasoning. While existing approaches focus on integrating causal constraints during the training of generative models, they often lack a unified framework to leverage the zero-shot reasoning capabilities of pretrained foundation models. We introduce FM-CGM, a modular framework for end-to-end visual causal reasoning using pretrained foundation models. FM-CGM formalizes the causal pipeline through three core components: a concept extractor, a concept manipulator, and a counterfactual generator. By leveraging a large reasoning model for causal inference and a text-to-image diffusion model for generation, our approach enables zero-shot causal discovery, intervention, and counterfactual generation. We then develop Causal Semantic Guidance (CSG), a cross-attention-based mechanism that ensures semantic interventions propagate to descendant concepts while preserving invariant regions. We empirically show that our approach can identify plausible causal structures and is suitable for faithful counterfactual image generation.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23861v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23861v1.pdf",
+      "title": "Prism: A Plug-in Reproducible Infrastructure for Scalable Multimodal Continual Instruction Tuning",
+      "authors": "Jun-Tao Tang, Yu-Cheng Shi, Zhen-Hao Xie, Da-Wei Zhou",
+      "abstract": "Multimodal Large Language Models (MLLMs) achieve versatility by reformulating diverse tasks into a unified instruction-following framework via instruction tuning. However, real-world deployment requires continuous adaptation to emerging tasks, motivating Multimodal Continual Instruction Tuning (MCIT). Despite its growing importance, current MCIT research is hindered by severe engineering bottlenecks. Existing methods are typically implemented by directly modifying the base MLLM codebase, which imposes substantial implementation overhead and yields method-specific architectures that severely limit code reuse and fair comparison. To address this, we introduce Prism, a plug-in reproducible codebase specifically designed for scalable MCIT research. It separates algorithmic development from the backbone implementation via a lightweight plugin registration mechanism, enabling new strategies to be integrated as independent plugins without modifying the underlying MLLM codebase, thereby eliminating structural fragmentation and accelerating method development. Prism natively supports widely used large-scale training pipeline, thereby enabling reproducible and scalable MCIT experimentation. Code is available at https://github.com/LAMDA-CL/Prism.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26110v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26110v1.pdf",
       "categories": [
         "cs.LG",
-        "cs.AI",
+        "cs.CL",
         "cs.CV"
       ],
-      "topic": "Causal Inference"
+      "topic": "AI & Machine Learning"
     },
     {
-      "title": "MemAudit: Post-hoc Auditing of Poisoned Agent Memory via Causal Attribution and Structural Anomaly Detection",
-      "authors": "Zhewen Tan, Yilun Yao, Huiyan Jin, Wenhan Yu, Guoan Wang, et al.",
-      "abstract": "Large language model agents increasingly rely on persistent memory to store past interactions, retrieve relevant demonstrations, and improve long-horizon task execution. However, this memory mechanism also creates a practical security vulnerability: an adversarial user may inject malicious records into the agent's memory through ordinary interaction, and these records can later be retrieved to steer the agent's reasoning and actions. Existing defenses primarily focus on online intervention, such as prompt filtering or output blocking, but they do not address the post-hoc question of which stored memories are responsible after harmful behavior has already been observed. We propose \\textbf{MemAudit}, a post-hoc causal memory auditing framework for memory-augmented LLM agents. The framework combines two complementary signals: (1) a counterfactual memory influence score that measures each memory's causal contribution to harmful outputs, and (2) a memory consistency graph that identifies structurally anomalous memories within the broader memory store. We evaluate MemAudit against MINJA, a query-only memory injection attack in which malicious records are generated and stored through normal agent interactions rather than direct memory-bank modification. Across both QA and reasoning-agent settings, MemAudit substantially reduces attack success rates under realistic post-hoc auditing scenarios. The results show that QA attack success is reduced from $70\\%$ to $0\\%$, while RAP attack success drops from $83.3\\%$ to $0\\%$.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23723v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23723v1.pdf",
+      "title": "Helix4D: Complex 4D Mesh Generation",
+      "authors": "Jiraphon Yenphraphai, Jianqi Chen, Jian Wang, Gordon Qian, Sergey Tulyakov, et al.",
+      "abstract": "Current video-to-4D methods struggle with complex topology changes, transparent materials, thin structures, and inner surfaces. We present Helix4D, a dynamic mesh generation framework by inheriting the expressive representation of Trellis2, adapting it from image-to-3D to video-conditioned 4D generation. Our design arises from two key questions: (a) how to enable Trellis2's frame-local attention to share information across frames while preserving its pretrained quality on rare cases such as transparent objects and inner surfaces, and (b) how to inject temporal information into a purely 3D positional encoding without breaking pretrained capabilities. We address (a) with a sliding-window cross-frame attention and anchor on the first frame. The first frame is generated by the base Trellis2 model and injected into our model, letting it inherit Trellis2's quality in rare cases through cross-frame attention. We address (b) with a 4D temporal encoding that repurposes redundant low-frequency spatial RoPE bands for time, extending the encoding from 3D with no additional parameters. Extensive experiments show the effectiveness of Helix4D for high-quality dynamic mesh generation on ActionBench and our own challenging complex dynamics set.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26109v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26109v1.pdf",
       "categories": [
-        "cs.AI"
+        "cs.CV"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "Reinforcing Few-step Generators via Reward-Tilted Distribution Matching",
+      "authors": "Yushi Huang, Xiangxin Zhou, Ruoyu Wang, Chi Zhang, Jun Zhang, et al.",
+      "abstract": "Recent advances in few-step diffusion distillation have enabled efficient image generation, yet aligning these models with human preferences remains challenging. We propose Reward-Tilted Distribution Matching Distillation (RTDMD), a two-stage framework that unifies distribution matching distillation with reward-guided reinforcement learning for few-step flow generators. We show that minimizing the KL divergence to a reward-tilted teacher distribution naturally decomposes into a distribution matching term and a reward maximization term. In the first stage, we introduce Ambient-Consistent Distribution Matching Distillation (AC-DMD), which performs subinterval-wise distribution matching and augments the fake score objective with a consistency regularizer to help the fake score model track the shifting generator distribution under limited updates. In the second stage, we jointly optimize both terms: for the reward maximization term, we derive a hybrid policy gradient that combines a GRPO-style estimator for the stochastic intermediate transitions with direct reward backpropagation through the deterministic final step, and further introduce step-subset GRPO (SubGRPO) to reduce variance. Experiments on SD3, SD3.5, and FLUX.2 demonstrate that RTDMD establishes new state-of-the-art results across preference, aesthetic, and compositional metrics with only 4 inference steps, outperforming previous few-step text-to-image generation methods. Code and models are available at https://github.com/Harahan/RTDMD.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26108v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26108v1.pdf",
+      "categories": [
+        "cs.CV"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "Looped Diffusion Language Models",
+      "authors": "Sanghyun Lee, Chunsan Hong, Seungryong Kim, Jonghyun Lee, Jongho Park, et al.",
+      "abstract": "Masked diffusion models (MDMs) have emerged as a promising alternative to autoregressive models for language modeling, yet the effective design of transformer architectures for MDMs remains underexplored. In this paper, we show that selectively looping the early-middle transformer layers significantly improves both training efficiency and model performance in MDMs. We call this approach LoopMDM(Looped Masked Diffusion Model), which brings two key benefits: looping layers at training-time yields a depth-scaling effect without adding parameters, while varying the number of loops at inference-time enables flexible compute scaling. Despite the simplicity, the results are striking: across multiple pre-training corpora, LoopMDM matches the performance of same-size MDMs with up to 3.3 fewer training FLOPs, while its final performance outperforms them on various reasoning benchmarks, including up to 8.5 points on GSM8K. It even surpasses deeper non-looped MDMs trained with comparable per-step compute, indicating that selective looping is more effective than naive depth scaling. Furthermore, LoopMDM can scale inference-time compute by increasing the number of loops. Adaptively adjusting the number of loops throughout the sampling process further yields additional gains in compute efficiency while maintaining performance. Lastly, with attention analysis, we provide evidence that looping is effective in MDMs by promoting interactions among masked positions. Our code and weights will be publicly released.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26106v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26106v1.pdf",
+      "categories": [
+        "cs.LG"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "On-Policy Adversarial Flow Distillation for Autoregressive Video Generation",
+      "authors": "Yang Luo, Shengju Qian, Xiaohang Tang, Zirui Zhu, Yong Liu, et al.",
+      "abstract": "Autoregressive video generators are attractive for streaming, long-horizon, and interactive applications, but distilling strong black-box teachers into causal students remains difficult. The student must learn under its own rollout distribution, whereas practical teachers may expose only prompt-conditioned completed videos and may differ in architecture, capacity, temporal design, and sampling schedule. This interface makes supervised fine-tuning off-policy, score-based distillation inapplicable, and direct adversarial imitation too sparse for denoising-time credit assignment. We propose Adversarial Flow Distillation (AFD), an on-policy framework for heterogeneous black-box video distillation. AFD queries the teacher and rolls out the current student on the same prompts, trains a prompt-paired Bradley-Terry discriminator to estimate clean-sample teacher-student discrepancy, and converts the resulting on-policy advantage into forward-process flow-matching updates on the student's own noised states. Thus, AFD provides dense velocity-field supervision while requiring no teacher scores, latents, denoising trajectories, step alignment, or reverse-chain reinforcement learning. Experiments across two causal AR student families show that AFD consistently improves motion- and physics-sensitive generation while preserving general video quality, and ablations validate the importance of adaptive on-policy feedback and forward-process credit assignment. The method requires only clean teacher videos and student rollouts, providing a practical route for distilling proprietary or heterogeneous video generators into efficient autoregressive students.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26105v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26105v1.pdf",
+      "categories": [
+        "cs.CV"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "StakeBench: Evaluating Language Understanding Grounded in Market Commitment",
+      "authors": "Yunhua Pei, Jingyu Hu, Yiwei Shi, Hongnan Ma, Weiru Liu, et al.",
+      "abstract": "Existing financial NLP benchmarks often rely on labels supplied by outside observers, measuring how language is perceived rather than what speakers have committed to in the market. We introduce StakeBench, an evaluation framework for language understanding grounded in market commitment. StakeBench links 560,876 comments from 2,261 resolved markets to verified position, action, and market-odds records across Polymarket and Manifold. Supervision is derived from observable market behavior. Position sides, post-comment trading actions, and market-odds trajectories replace human annotation. Four diagnostic tasks test whether models detect market commitment, identify the revealed side, anticipate future action, and perform collective odds projection. Three commitment-aware metrics measure alignment with revealed preferences rather than perceived sentiment. Validity audits and explicit interpretation boundaries help distinguish observable commitment signals from latent belief and causal market-odds impact. Across 15 LLMs and 18 topics and platform settings, models partially recover position-side signals, with Directed Accuracy from 0.506 to 0.599, but show structural failures on later tasks. Ten of the fifteen models collapse to one or two action labels in future action anticipation, and no model consistently improves on the naive odds-direction baseline in collective odds projection. Model scale is not correlated with performance, finance-domain tuning does not improve revealed-side identification, and platform incentives strongly shape higher-order results. StakeBench is packaged with evaluation code and dataset under CC-BY 4.0.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26074v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26074v1.pdf",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "q-fin.GN"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "Concomitant DAG Learning: On the Roles of Noise Adaptivity, Sparsity, and Non-negativity",
-      "authors": "Gonzalo Mateos, Samuel Rey, Hamed Ajorlou, Mariano Tepper",
-      "abstract": "Directed acyclic graphs (DAGs) constitute a central modeling tool to enable principled reasoning about cause-effect interactions in complex systems. However, since the causal structure underlying a group of variables is often unknown and interventions may be infeasible or ethically challenging to implement, there is a need to address the task of inferring DAGs from observational data. However, most classical structure identification approaches face two key obstacles: the combinatorial challenge of enforcing acyclicity, which severely limits scalability, and identifiability challenges arising from latent confounding or heterogeneous noise. This tutorial offers an overview of recent signal processing and optimization advances that address these issues by recasting DAG structure learning as a continuous, score-based estimation problem over adjacency matrices. We begin with a didactic introduction to structural equation models and the formulation of causal graph recovery, followed by a historical survey of score-based methods ranging from early combinatorial search schemes and greedy heuristics to modern continuous frameworks that leverage smooth characterizations of acyclicity. Building on this foundation, we describe concomitant DAG estimation methods that jointly infer sparse causal structure and exogenous noise levels, improving robustness under heteroscedasticity and distribution shifts by rendering the estimator noise adaptive. All in all, the tutorial introduces readers to challenges and opportunities for signal processing research at the crossroads of causal inference, high-dimensional statistics, and scalable graph learning, while outlining emerging directions including online, nonlinear, and neural causal discovery.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23537v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23537v1.pdf",
-      "categories": [
-        "stat.ML",
-        "eess.SP"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "One-Forcing: Towards Stable One-Step Autoregressive Video Generation",
-      "authors": "Jiaqi Feng, Justin Cui, Yuanhao Ban, Cho-Jui Hsieh",
-      "abstract": "Recent advances have substantially improved real-time interactive video generation in the autoregressive regime. However, most existing few-step autoregressive video generation methods, often distilled from a corresponding many-step teacher, default to a 4-step sampling configuration, which still incurs considerable latency during deployment and suffers from severe quality degradation when the number of sampling steps is further reduced, particularly in the one-step setting. Trajectory-style consistency distillation methods often produce videos with weak dynamics, while DMD-based approaches, such as Self-Forcing, tend to yield blurry frames. To address this challenge, we propose One-Forcing, a simple yet effective approach which augments the DMD objective with an auxiliary GAN loss for high-quality and efficient one-step video generation. Experiments on VBench show that One-Forcing achieves a total score of 83.76, establishing state-of-the-art performance among one-step causal video generation methods and remaining competitive with strong many-step approaches. We further demonstrate that one-step framewise autoregressive generation can be achieved stably with merely one-third of the training cost of the chunkwise model, a setting that prior methods have failed to achieve successfully.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23458v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23458v1.pdf",
+      "title": "DRScaffold: Boosting Dense-Scene Reasoning in Lightweight Vision Language Models",
+      "authors": "Xinrui Shi, Kai Liu, Ziqing Zhang, Jianze Li, Anqi Li, et al.",
+      "abstract": "Lightweight vision-language models perform competitively on standard benchmarks yet fail systematically in dense-scene reasoning, where multiple objects, attributes, and relations must be jointly grounded and resolved through multi-step inference. Such capability is critical for real-world applications where models must reliably interpret cluttered environments. Yet existing training signals provide no explicit grounding between reasoning steps and the underlying visual entities and relations, leaving lightweight models free to generate fluent but visually unanchored reasoning chains. To address this gap, we first introduce DRBench, a benchmark of 14,573 questions across 2,943 images, organized into five task categories spanning three progressive reasoning layers. Building on DRBench, we propose DRScaffold, a supervised fine-tuning framework that decomposes the supervision target into four causally ordered stages, enforcing grounded reasoning without architectural modification. Experiments on three lightweight VLMs demonstrate substantial gains on DRBench while preserving or improving performance on general-purpose benchmarks. Notably, Qwen2.5-VL-3B trained with DRScaffold surpasses the frozen Qwen2.5-VL-32B on DRBench, demonstrating that structured supervision can substitute for a significant portion of model scale in dense-scene reasoning. Our code and models are available at https://github.com/irene-shi/DRScaffold .",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26038v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26038v1.pdf",
       "categories": [
         "cs.CV",
         "cs.AI"
@@ -201,157 +176,157 @@
       "topic": "Causal Inference"
     },
     {
-      "title": "Convergence Without Understanding: When Language Models Agree on Representations but Disagree on Reasoning",
-      "authors": "Muhammad Usama, Dong Eui Chang",
-      "abstract": "Large language models trained under diverse objectives and architectures have been shown to develop increasingly similar internal representations, an observation formalized as the Platonic Representation Hypothesis. Whether this representational convergence extends to the reasoning processes that operate over shared representations remains untested. We evaluate representational similarity across 16 language models from 8 families (1.5B to 72B parameters) on 800 reasoning problems spanning mathematics, science, commonsense, and truthfulness, stratifying by problem difficulty, computational stage, and causal relevance. Our analysis reveals three dissociations: a difficulty inversion, where models converge more on problems they collectively fail (Centered Kernel Alignment [CKA] = 0.897) than on those they solve (CKA = 0.830); a generation gap, where pre-decision representations align (CKA = 0.875) while post-decision representations diverge (CKA = 0.274); and epiphenomenal correctness, where shared information is decodable across models (66% transfer accuracy) but exerts minimal causal influence on predictions (1.5% to 5.5% flip rate across ablation protocols). These results indicate that representational convergence in language models reflects shared input processing constraints rather than shared reasoning strategies, with direct implications for ensemble design, interpretability transfer, and evaluations of model similarity. Code is available at https://github.com/Usama1002/convergence-without-understanding.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23315v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23315v1.pdf",
+      "title": "CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists",
+      "authors": "Junlin Yang, Dylan Zhang, Xiangchen Song, Qirun Dai, Xiao Liu, et al.",
+      "abstract": "We introduce CausaLab, a scalable environment for evaluating interactive causal discovery by LLM agents. Unlike prior evaluations, CausaLab evaluates both whether an agent can solve a problem using causal evidence and whether its answer is supported by a correct hypothesis about the underlying causal mechanism. Each episode places an agent in a synthetic laboratory: it receives prior measurement records, intervenes on a manipulator crystal, and predicts the resonance frequency of a held-out reactor crystal governed by the same mechanism. The hidden data-generating process is a randomly sampled structural causal model (SCM), so success requires recovering both a causal graph and structural equations rather than recalling prior knowledge. CausaLab also includes a domain-specific language that records the agent's evolving SCM hypothesis, making trajectories inspectable and comparable with ground truth. Experiments show a persistent gap between prediction and mechanism recovery: in the purely observational 6-node setting, GPT-5.2-high reaches 92% task accuracy but only 0.471 all-edge $F_1$. This observation further motivates our exploration of different interaction strategies: Mixed observation--intervention strategies improve structural fidelity: in the mixed 6-node setting, GPT-5.2-high achieves 80% on both task accuracy and all-edge $F_1$. Yet even strong agents struggle to design informative interventions, as pure intervention strategies perform poorly on both task accuracy and all-edge $F_1$. We identify premature stopping as a major weakness of agents, and show that asking the model to verify the consistency between its hypothesis and past data can help mitigate this issue. CausaLab therefore separates predictive success from causal understanding and exposes current LLM agents' limits as experimental causal reasoners.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26029v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26029v1.pdf",
       "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "ChainFlow-VLA: Causal Flow Planning with Vision-Language Models",
-      "authors": "Xiyang Wang, Xinlin Wang, Tingguang Zhou, Gong Chen, Xingtai Gui, et al.",
-      "abstract": "Current end-to-end autonomous driving systems are fundamentally limited by a mismatch between temporal causal reasoning and global trajectory consistency. Autoregressive (AR) models capture interaction-aware temporal dependencies via causal factorization, but their step-wise decoding leads to error accumulation and suboptimal global structure. In contrast, diffusion models optimize trajectories globally but lack explicit causal constraints, making them unreliable in interactive and safety-critical scenarios. This dichotomy reveals a deeper issue: existing methods treat causal modeling and global optimization as separate paradigms, without a principled way to unify them within a single trajectory distribution. To address this, we propose ChainFlow-VLA, which unifies causal generation and global refinement within a unified probabilistic framework. We formulate planning as a mixture over AR-induced modes and learn Vision-Language Model (VLM)-conditioned residual distributions over these modes. An autoregressive generator (Chain) produces a discrete set of causal trajectory modes, followed by a diffusion-based refiner (Flow) that leverages VLM hidden states as semantic priors to perform mode-conditioned correction in residual space while preserving causal structure. This straightforward conditioning seamlessly injects high-level scene understanding into fine-grained trajectory adjustments. Experiments demonstrate that ChainFlow-VLA achieves robust planning in ambiguous and long-tail scenarios, achieving a state-of-the-art score of 94.85 on the NAVSIM v1 leaderboard, matching human-level performance (94.8). Code will be available at https://github.com/AFARI-Research/ChainFlow-VLA.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23270v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23270v1.pdf",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.RO"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Do Language Models Know What Not to Say? Causal Evidence for Statistical Preemption in LLMs",
-      "authors": "Dongxin Guo, Jikun Wu, Siu Ming Yiu",
-      "abstract": "How do learners acquire knowledge of what is unacceptable without negative evidence? Construction Grammar proposes statistical preemption: exposure to a conventional form (e.g., \"donated the books to the library\") preempts structurally possible but unattested alternatives (\"*donated the library the books\"). We present a computational study that, for the first time, directly dissociates statistical preemption from the competing entrenchment hypothesis in large language models within a single converging design. Across four experiments spanning 120 English verb-construction pairings (dative, causative, locative), we show that (1) LLM surprisal patterns correlate strongly with human acceptability judgments ($r = 0.79$), validated against three independent behavioral datasets; (2) these patterns are driven by competing-form frequency rather than overall verb frequency, confirmed by non-circular partial correlations; (3) preemption sensitivity scales as a power law with model size; and (4) a controlled fine-tuning intervention causally demonstrates that manipulating competing-form frequencies shifts preemption behavior in the predicted direction, with reverse-direction controls ruling out frequency-sensitivity confounds. These results provide converging evidence that neural language models acquire negative linguistic knowledge through distributional competition, the core mechanism posited by Construction Grammar.",
-      "published": "2026-05-21",
-      "link": "http://arxiv.org/abs/2605.23039v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23039v1.pdf",
-      "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Memorization Dynamics of Fill-in-the-Middle Pretraining",
-      "authors": "Tobias von Arx, Tanguy Dieudonné",
-      "abstract": "Fill-in-the-middle (FIM) is a pretraining objective widely used to equip causal language models with infilling ability, yet its effect on verbatim memorization remains underexplored. We study the memorization dynamics of FIM in a controlled setting by pretraining matched Llama 3.2 models with FIM and standard left-to-right (LTR) objectives on a FineWeb-Gutenberg corpus containing repeated Gutenberg excerpts. With prefix-based probes, FIM more often recovers short or partially matching spans, while LTR more often assigns high confidence to long exact continuations. We observe that verbatim extraction under FIM-training grows approximately linearly with repetitions over the tested range. Evaluating native FIM-format probes reveals that suffix context is not sufficient: verbatim recall under FIM-training remains strongly anchored in prefix context. Our results also show that evaluating only one span length or probing format can miss important nuances in memorization behavior.",
-      "published": "2026-05-21",
-      "link": "http://arxiv.org/abs/2605.22981v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.22981v1.pdf",
-      "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Transcoders Trace Visual Grounding and Hallucinations in Vision-Language Models",
-      "authors": "Dimitrios Damianos, Leon Voukoutis, Georgios Skyrianos, Vassilis Katsouros, Georgios Paraskevopoulos",
-      "abstract": "Generative Vision-Language Models (VLMs) perform well on multimodal reasoning, but how visual inputs are transformed to text remains poorly understood. Existing interpretability work on VLMs uses Sparse Autoencoders (SAEs), which decompose static residual representations and miss the functional updates that drive cross-modal interaction. We adopt a function-centric framework based on Transcoders, sparse approximations of MLP sublayers that act as a causal proxy for layer-wise computation. Applied to Gemma 3-4B-IT, the framework decomposes the model into interpretable computational pathways linking image patches to directions in token generation. Transcoder attributions produce stronger and more stable effects on visually grounded tokens under patch ablation than SAE attributions, and align better with semantically relevant image regions. A False Visual Grounding counterfactual analysis confirms that the recovered pathways are specific to vision-language interaction.Finally, we perform a structural analysis of hallucinated generations, by extracting graph-based indicators from circuit traces produced by the transcoders. A logistic classifier over these mechanistic graph features predicts hallucinations at AUC $0.68$. These results show that function-centric circuit decomposition yields interpretable and predictive accounts of multimodal computation in VLMs.",
-      "published": "2026-05-21",
-      "link": "http://arxiv.org/abs/2605.22902v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.22902v1.pdf",
-      "categories": [
-        "cs.LG",
         "cs.AI",
         "cs.CL"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "Reading Task Failure Off the Activations: A Sparse-Feature Audit of GPT-2 Small on Indirect Object Identification",
-      "authors": "Mahdi Nasermoghadasi",
-      "abstract": "We report a small, reproducible audit of which sparse-autoencoder (SAE) features of GPT-2 small fire differently on failed versus successful trials of the Indirect Object Identification (IOI) task. On 300 prompts, GPT-2 small reaches 79.7% accuracy; 146 of the 24,576 features in the layer-8 residual-stream SAE release of Bloom (2024) clear a Holm-corrected significance threshold and 105 reach a large effect size (|Cohen's d| > 0.8). The strongest single correlate of failure -- feature 17,491, d=+2.93, Neuronpedia label 'cryptographic keys' -- is essentially silent except when the prompt's transferred object is 'the keys,' on which GPT-2 small fails 93.3% of the time vs. 7.5% on the other seven objects (Fisher exact p = 8.79 x 10^-33). We put this correlate through three controls that a mechanistic claim should pass. (i) A causal ablation: zeroing feature 17,491 in the residual stream across all token positions of the 45 keys prompts does not restore accuracy (6.7% -> 4.4%); the feature is a correlate, not a sufficient cause at this layer. (ii) A representation baseline: a logistic regression on the raw 768-dimensional residual stream reaches 5-fold ROC AUC = 0.929, matching the top-100 SAE features (0.927); the SAE basis adds interpretability, not predictive power. (iii) A seed-robustness check: across five random seeds the keys-subset failure rate stays in 75.0--93.3% (the behavioural effect is real), but feature 17,491 is the top-|d| feature in only 1 of 5 runs. The methodological contribution is therefore the audit pipeline (cheap, model-agnostic, surfaces named correlates) rather than any single feature found through it. We release the code, the 300-prompt corpus, the 300x24,576 activation matrix, the ablation and baseline scripts, and the figures. The full pipeline runs on a laptop (Apple M3 Max, no discrete GPU).",
-      "published": "2026-05-21",
-      "link": "http://arxiv.org/abs/2605.22719v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.22719v1.pdf",
+      "title": "Causal methods for LLM development and evaluation",
+      "authors": "Dennis Frauen, Marie Brockschmidt, Konstantin Hess, Haorui Ma, Yuchen Ma, et al.",
+      "abstract": "Large language model (LLM) development is currently driven by large-scale empirical iteration over data mixtures, reward models, routing strategies, and evaluation pipelines. Here, we argue that many central questions in LLM development and evaluation are inherently causal: What is the effect of adding a data domain during pretraining? How do annotator preferences change when LLMs generate text in a different style? Should a prompt be routed to a larger or smaller model given inference cost constraints? In general, causal methods are well-suited to such settings where interventions change outcomes but, surprisingly, are underrepresented in LLM development. Our contribution is threefold: (1) We explain how causal methods can help develop modern LLM development and evaluation: LLM development relies heavily on logged data, which are often subject to confounding and distribution shifts; evaluation uses learned but potentially biased judges; and deployment environments are non-stationary. These conditions make purely predictive approaches fragile and create opportunities for principled identification and estimation methods from causal inference. (2) We further map opportunities for causal methods in the entire LLM development pipeline, including pretraining, alignment, routing, agentic workflows, and evaluation. (3) We discuss new research opportunities around leveraging causal methods for LLM development and evaluation. Overall, we argue that causal methods are potentially underutilized for the LLM development and evaluation pipeline, despite the fact that such methods can ensure a reliable and scientifically grounded design.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25998v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25998v1.pdf",
       "categories": [
         "cs.LG"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "PGT: Procedurally Generated Tasks for improving visual grounding in MLLMs",
-      "authors": "Rim Assouel, Amir Bar, Michal Drozdzal, Adriana Romero-Soriano",
-      "abstract": "Despite remarkable progress in Multimodal Large Language Models (MLLMs), these models still struggle with fine-grained understanding tasks. In this work, we propose Procedurally Generated Tasks (PGT), a simple data-driven framework that serves a dual purpose: inducing fine-grained visual understanding and acting as a low-cost diagnostic tool to identify the source of perception failures. By overlaying unambiguous geometric primitives on images, PGT generate additional dense supervision that disentangles visual grounding capability from semantic priors. Extensive experiments on relational, quantitative, and 3D/depth understanding benchmarks show that PGT yields remarkable gains across diverse architectures. Instruction tuning MLLMs on LLaVA-v1.5-Instruct augmented with PGT data results in improvements of up to +20% on the What'sUp benchmark and +13.3% on CV-Bench-2D, while maintaining general perception capabilities. Moreover, finetuning state-of-the-art MLLMs on PGT data leads to boosts of up to +5.5% on What'sUp and +8.3% on CV-Bench-2D. These findings demonstrate that PGT effectively address the bottleneck of fine-grained perception, revealing that many spatial reasoning deficits stem from inadequate supervision signals rather than inherent architectural or resolution limitations.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23883v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23883v1.pdf",
+      "title": "Causal Tongue-Tie: LLMs Can Encode Causal Direction, But Their Yes/No Outputs Fail to Express",
+      "authors": "Ziyi Ding, Xiao-Ping Zhang",
+      "abstract": "We find a mismatch between what large language models encode about a causal question and what they answer. On anti-commonsense CLadder items, a fixed linear probe recovers the evidence-supported answer from the model's hidden state (accuracy approximately 0.97), while the spoken Yes/No reverts to the commonsense one (accuracy approximately 0.5). We call this approximately +0.5 gap Causal Tongue-Tie: a wrong Yes/No decomposes into two separable failure modes: no internal signal versus a signal the verbal interface cannot say. The implication cuts both ways for output-only causal benchmarks: a benchmark \"correct\" need not mean the model has understood, and a benchmark \"wrong\" need not mean it cannot. Sweeping claims about whether LLMs can do causal reasoning, drawn from a single accuracy number, deserve a second look.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25891v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25891v1.pdf",
       "categories": [
-        "cs.CV",
+        "cs.CL",
+        "cs.AI"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Geometry Adaptive Counterfactual Distribution Learning with Diffusion-Guided Smoothing",
+      "authors": "Kwangho Kim",
+      "abstract": "We study counterfactual distribution learning for high-dimensional outcomes whose counterfactual law may concentrate near lower-dimensional structure. Standard isotropic smoothing treats all ambient directions equally, leading to unfavorable scaling and unstable local inference. We propose two diffusion-guided estimators based on semiparametric debiasing: diffusion-informed smoothing for counterfactual densities and diffusion-informed score smoothing for counterfactual scores. The estimators combine causal nuisance adjustment with geometry-adaptive localization driven by diffusion score information, removing first-order nuisance bias while aligning smoothing with local outcome geometry. We establish asymptotic expansions, risk bounds, and inference procedures for smoothed density and score-based targets, with ambient density inference obtained under additional approximation conditions. Under structural geometry conditions, the leading stochastic error is governed by an effective dimension induced by the diffusion-guided kernel, rather than by the ambient dimension. Semi-synthetic experiments based on CelebA show steeper error decay for geometry-adaptive methods, supporting the proposed effective-dimension theory.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25811v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25811v1.pdf",
+      "categories": [
+        "stat.ME",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "DeGRe: Dense-supervised Generative Reranking for Recommendation",
+      "authors": "Chaotian Song, Jingyao Zhang, Chenghao Chen, Zisen Sang, Dehai Zhao, et al.",
+      "abstract": "In multi-stage recommender systems, reranking optimizes overall utility by capturing intra-list contextual dependencies, yet its central challenge lies in exploring optimal sequences within an exponentially large permutation space. Recent studies have shifted towards end-to-end generative frameworks, which typically leverage list-wise rewards or preference alignment to guide generator training. However, these methods still face two critical issues. First is the heuristic label bias. Existing methods often construct training targets based on simple rules, such as promoting clicked items to the top, while ignoring causal dependencies within the list context. Second is the credit assignment problem. Sparse list-level posterior rewards fail to directly guide intermediate steps in sequence generation, leading to ambiguous optimization directions.   To address these issues, we propose DeGRe (Dense-supervised Generative Reranking), a generative reranking framework that bridges the gap between offline exploration and online efficiency through dense supervision. The core of DeGRe lies in its offline-online decoupled design. During the offline phase, we introduce a Lookahead Evaluator based on cumulative regression, which leverages beam search to actively mine high-value lookahead sequences in the unexposed space. During training, we transform the step-wise value estimations from the evaluator into dense supervision signals and distill them into a lightweight Online Generator. This mechanism enables the generator to internalize lookahead planning capabilities, requiring only a single efficient greedy decoding pass during online inference to approximate the global optimum. Experiments demonstrate that DeGRe outperforms baseline models on public benchmarks and industrial datasets. We have successfully deployed DeGRe on Taobao Flash Shopping, significantly improving online recommendations.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25749v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25749v1.pdf",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Learning Latent Dynamical Causal Processes for Single-Cell Perturbation Prediction",
+      "authors": "Wenkang Jiang, Yuhang Liu, Erdun Gao, Ehsan Abbasnejad, Lina Yao, et al.",
+      "abstract": "Single-cell perturbation prediction aims to infer how cells respond to unseen interventions and to achieve out-of-distribution (OOD) generalization, providing a computational route to understanding how perturbations reshape cellular programs over time. Existing machine learning methods have made important progress, but typically capture only one side of the response. Latent causal approaches seek mechanisms that support generalization and interpretation, yet often treat perturbation effects as static outcomes. Temporal models describe how gene expression changes across time, but usually do not explicitly recover the latent causal generative mechanisms driving these changes. In practice, perturbation effects are both latent and dynamical: interventions act through unobserved cellular programs, whose states evolve over time and give rise to observed expression profiles. Motivated by this view, we propose a latent dynamical causal generative model for single-cell perturbation data that jointly captures latent cellular programs, perturbation-conditioned mechanisms, and temporal evolution. We further provide an identifiability analysis showing that, under suitable conditions, the latent causal variables are recoverable up to standard equivalence classes. Guided by this analysis, we develop CITE-VAE, a learning framework for recovering latent cellular programs and their perturbation-driven dynamics from single-cell sequencing data. Experiments on Causal-3DIdent validate the theoretical results and the effectiveness of the proposed method in controlled settings. Additional experiments on real-world CRISPR-based single-cell perturbation data show improved generalization to unseen perturbations compared with state-of-the-art baselines, highlighting the practical robustness of our approach.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25581v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25581v1.pdf",
+      "categories": [
+        "cs.LG"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Generative AI impacts on intra-urban inequality and skill premium in Beijing",
+      "authors": "Xiliu He, Haoxiang Zhao, Mingyi Ma, Edward Wen Chuan Lai, Koei Enomoto, et al.",
+      "abstract": "Generative artificial intelligence (GenAI) is the first automation wave to reach high-cognitive tasks at scale, yet its effects on intra-urban inequality remain largely unknown. Using 5 million job postings from Beijing (2018--2024), we construct a neighborhood-level GenAI Exposure Index by aggregating task-level assessments from five leading large language models. We examine the spatial, structural and causal mechanisms of this shock. We find that GenAI exposure is highly concentrated in the city's core districts, deepening the intra-urban AI divide. Since 2023, high-exposure neighborhoods have experienced wage stagnation even as they continue to attract high-skilled workers -- a \"high-skill trap.\" This wage penalty is driven by task de-skilling and intensified labor-market crowding. A difference-in-differences design centered on ChatGPT's release supports a causal interpretation. These findings challenge the prevailing theory of skill-biased technological change and provide a basis for inclusive AI governance in global technology hubs.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25505v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25505v1.pdf",
+      "categories": [
+        "cs.CY",
+        "cs.AI",
+        "econ.GN",
+        "physics.soc-ph"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "From Simulation to Enaction: Post-trained language models recognize and react to their own generations",
+      "authors": "Asvin G., Jack Lindsey",
+      "abstract": "Language models are pretrained as passive predictors with no incentive to model the consequences of their own outputs. Post-training changes this: a model producing its own responses can benefit from recognizing that it is on-policy. We present evidence that post-trained models recognize their on-policy generations, and this recognition is implicitly encoded in their output distributions. In particular, on-policy output distribution entropy is 3--4$\\times$ lower than off-policy entropy, across model families and size classes. We trace part of this effect to an internal representation of input surprise, tracking the unlikeliness of the most recent input token according to the model's prior predictions, that causally modulates output entropy. One example of these phenomena can be observed in response to open-ended prompts; post-trained models (unlike pretrained models) collapse their uncertainty over the topic of their upcoming response before the first output token; violating this cached intention with a different-topic prefill results in higher output entropy. We also tested whether models can distinguish on-policy contexts from prefills via explicit verbal report. We find that they can, but that interestingly, this explicit recognition routes through a different mechanism than implicit recognition.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.25459v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.25459v1.pdf",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "InstructSAM: Segment Any Instance with Any Instructions",
+      "authors": "Yuqian Yuan, Wentong Li, Zhaocheng Li, Yutong Lin, Juncheng Li, et al.",
+      "abstract": "In this paper, we introduce InstructSAM, a unified and streamlined framework designed for multi-instance segmentation under arbitrary instructions. We formulates instruction-driven instance segmentation as a set-structured query prediction problem and propose an explicit reasoning-to-instance query interface that elegantly bridges a vision-language model (VLM) and SAM3. Specifically, a bank of learnable instance queries is injected into the VLM and contextualized with instruction and visual information, enabling each query to serve as an instance-aware slot. A hybrid-attention mechanism further promotes interaction among these queries, visual tokens, and instruction tokens, improving instance enumeration and reducing duplicate predictions. The resulting LLM-conditioned queries are projected into SAM3's detector query space to drive accurate multi-instance segmentation in a single forward pass. This design equips SAM3 with high-level instruction understanding, compositional reasoning, and instance-level set prediction without modifying its core architecture. To support training and evaluation, we further construct Inst2Seg, a high-quality and large-scale instruction-based instance segmentation dataset and benchmark that couples free-form instructions with instance-level masks. Extensive experiments show that only 2B-scale InstructSAM achieves strong results across complex instruction-driven and phrase-level referring segmentation benchmarks, outperforming prior end-to-end methods and SAM3's agentic pipeline while enabling efficient single-pass multi-instance prediction.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26102v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26102v1.pdf",
+      "categories": [
+        "cs.CV"
+      ],
+      "topic": "Large Language Models"
+    },
+    {
+      "title": "Beyond Summaries: Structure-Aware Labeling of Code Changes with Large Language Models",
+      "authors": "Bar Weiss, Antonio Abu-Nassar, Adi Sosnovich, Karen Yorav",
+      "abstract": "Code review is a critical practice in software engineering, yet the growing scale and frequency of code patches in modern projects, together with the widespread adoption of AI code assistants, make manual review increasingly challenging. Identifying the types of changes within a patch, such as renames, moves, or logic modifications, can substantially improve review efficiency by enabling prioritization, filtering, and automation. However, existing LLM-based approaches to code review have largely focused on summarization and comment generation, leaving structured code reviews underexplored. In this paper, we present a systematic study of using large language models (LLMs) for taxonomy-based labeling of code changes in a code patch. We introduce a two-stage pipeline that assigns labels to diff hunks and then refines them to capture structural relationships and semantic attributes, such as rename propagation and type changes. Our approach employs few-shot prompting to produce language-agnostic and customizable labels, without the engineering overhead of traditional static-analysis pipelines. We evaluate four LLMs across multiple context configurations on a manually curated benchmark of natural and synthetic patches. Our best configuration achieves up to $84\\%$ recall and $81\\%$ precision, with high accuracy in extracting relational and attribute metadata. These results suggest that LLM-based labeling can effectively complement static analysis by enabling flexible, multilingual, and automation-friendly code review workflows.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26100v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26100v1.pdf",
+      "categories": [
+        "cs.SE",
         "cs.AI"
       ],
       "topic": "Large Language Models"
     },
     {
-      "title": "Human Decision-Making with Persuasive and Narrative LLM Explanations",
-      "authors": "Laura R. Marusich, Mary Grace Kozuch Dhooghe, Jonathan Z. Bakdash, Murat Kantarcioglu",
-      "abstract": "Large language models (LLMs) have the potential to aid and improve human decision-making in classification tasks, not only by providing fairly accurate predictions, but also in their ability to generate cogent narrative explanations of those predictions. Prior work has demonstrated that people generally find AI narrative explanations to be understandable, trustworthy, and convincing for changing beliefs and opinions; however, less is known about the impact of narrative explanations on objective human decision-making performance. Here we conduct a large-scale human behavioral experiment to evaluate decision-making performance with LLM-generated narrative explanations of varying persuasiveness. We found the degree of persuasiveness, or lack thereof, for LLM-based explanations did not meaningfully impact decision accuracy over a simple AI prediction alone, in agreement with typical results with explainable AI based on feature importance. We found evidence that narratives increased reliance on AI, but both when the AI prediction was correct and incorrect. Exploratory analyses also indicated that the more persuasive narratives may have had a detrimental effect on decision response times and the ability to discriminate between a correct and incorrect AI prediction. Overall, this work indicates that including narrative explanations with AI predictions may involve tradeoffs for decision-making performance, and more work is needed to determine how and when narrative explanations impact human decision-making.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23867v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23867v1.pdf",
-      "categories": [
-        "cs.HC",
-        "cs.AI"
-      ],
-      "topic": "Large Language Models"
-    },
-    {
-      "title": "Robotic Strawberry Harvesting with Robust Vision and Deep Reinforcement Learning based Sim-to-Real Control",
-      "authors": "Al Bashir, Shao-Yang Chang, Partho Ghose, Prem Raj, Chen-Kang Huang, et al.",
-      "abstract": "This study presents a closed-loop robotic strawberry harvesting system that combines a robust vision module, simulation-trained deep reinforcement learning (DRL) control, and ROS-based realrobot execution. For perception, we propose HRAttnEdge-YOLO26-seg, a modified YOLO26-seg architecture that incorporates a high-resolution P2 branch, segmentation-path attention, and edgesupervised prototype learning to improve instance segmentation in cluttered scenes. For control, we train a target-conditioned Proximal Policy Optimization (PPO) policy in Isaac Lab to produce smooth joint-position commands for a UR10e manipulator and deploy it on a UR10e robot for targetfruit reaching and harvesting. This simulation-based approach reduces hardware dependency, lowers development cost, and allows scalable policy training without exhaustive physical trials before real deployment. The proposed vision model demonstrated the highest overall performance among the evaluated methods. On both self-collected and public datasets, the model showed a 10 to 14% improvement in segmentation performance. In controlled in-house tests, the PPO controller produced stable and dynamically smoother motion than a inverse kinematics (IK)-based MoveIt baseline. In greenhouse trials, the proposed integrated system harvested 281 strawberries, achieving 96.6% reaching success, 91.3% grasp-and-pull success, and 84.3% overall harvesting success. These results illustrate that task-specific perception combined with simulation-trained PPO can serve as a practical and resource-efficient alternative to conventional planner-dependent reaching in manipulation, enabling reliable closed-loop robotic harvesting in complex agricultural environments.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23863v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23863v1.pdf",
-      "categories": [
-        "cs.RO"
-      ],
-      "topic": "Reinforcement Learning"
-    },
-    {
-      "title": "Direct Dynamic Retargeting for Humanoid Imitation Learning from Videos",
-      "authors": "Constant Roux, Ludovic De Matteïs, Armand Jordana, Valentin Guillet, Nicolas Mansard, et al.",
-      "abstract": "Imitation Learning from monocular video demonstrations provides a scalable approach for teaching complex skills to humanoid robots. However, translating human motion to humanoids requires overcoming significant morphological mismatches. Standard approaches rely on Geometric Retargeting or Indirect Dynamic Retargeting pipelines. We identify that these intermediate kinematic projections introduce a geometric bias, restricting the search space and yielding suboptimal dynamic behaviors. In this paper, we propose Direct Dynamic Retargeting (DDR), a novel single-stage framework that generates high-fidelity, dynamically feasible trajectories directly from expert videos. By formulating the problem in the task space and leveraging a sampling-based Model Predictive Control solver within a physics simulator, DDR natively optimizes over complex contact sequences while mitigating input drift. Our experiments demonstrate that bypassing the geometric bias allows DDR to outperform state-of-the-art baselines in demonstration tracking accuracy. Furthermore, we establish that providing such physically viable references to RL agents accelerates training convergence and enhances the final execution of agile and balancing behaviors. Source code will be made publicly available.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23762v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23762v1.pdf",
-      "categories": [
-        "cs.RO"
-      ],
-      "topic": "Reinforcement Learning"
-    },
-    {
-      "title": "SeedER: Seed-and-Expand Retrieval from Knowledge Graphs",
-      "authors": "Hamed Shirzad, Frederik Wenkel, Dominique Beaini, Danica J. Sutherland, Emmanuel Noutahi",
-      "abstract": "Knowledge graphs (KGs) offer a rich representation for relational knowledge, but their irregular structure makes retrieval challenging: ego-graph expansion grows rapidly, and dense embedding methods struggle with multi-hop compositional queries. Existing agent-based graph exploration approaches, while expressive, are often too expensive for large-scale retrieval. We introduce SeedER (Seed-and-Expand Retrieval), a retrieval framework that explicitly leverages KG structure through iterative, low-cost expansion. SeedER first seeds a compact set of core nodes using lightweight dense and entity-based retrieval, then selectively expands this set via a learned graph-aware policy trained with reinforcement learning. This design decomposes global reasoning into reusable local decisions, enabling efficient discovery of query-relevant nodes while tightly controlling expansion cost. We show theoretical limitations of dense retrieval on compositional graph queries, and establish advantages of SeedER from both compositional generalization and graph-constrained submodular optimization perspectives. Empirically, SeedER substantially improves recall with compact candidate sets over strong dense and graph-augmented baselines, making it an effective first-stage retriever for knowledge-intensive reasoning systems.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23753v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23753v1.pdf",
+      "title": "Global Convergence of Wasserstein Policy Gradient for Entropy-Regularized Reinforcement Learning",
+      "authors": "Zhaoyu Zhu, Rui Gao, Shuang Li",
+      "abstract": "Wasserstein policy gradient (WPG) is a policy optimization method for reinforcement learning (RL) that exploits the optimal-transport geometry of action distributions. For the entropy-regularized RL objective, WPG evolves each state-conditional policy by transporting it along the action gradient of the soft Q-function together with a Langevin-type diffusion. Despite its appeal for continuous-control problems, its global convergence properties remain poorly understood. Standard Langevin analyses do not directly apply, because the RL objective depends on the policy through the Bellman recursion rather than through a static convex functional, and the Langevin drift is determined by the soft Q-function, whose regularity must be controlled along the policy iterates.   In this paper, we develop a global convergence theory for WPG by exploiting the Bellman structure of entropy-regularized RL. We show that the role usually played by convexity can be replaced by a Bellman-based argument: the soft Bellman residual admits a statewise KL representation with respect to a Gibbs policy; Bellman contraction relates this residual to the global optimality gap; and a Bellman resolvent identity connects value improvement to relative Fisher information. Combined with a uniform log-Sobolev inequality (LSI) for the evolving Gibbs family, these ingredients yield a distributional Polyak--Łojasiewicz condition. We further establish the regularity and uniform bounds needed to control the discretization error, thereby obtaining geometric contraction up to a discretization bias. Conceptually, our analysis shows that although entropy-regularized RL is not convex in the usual flat sense, the Bellman recursion induces a favorable Polyak--Lojasiewicz-type (PL) geometry that supports global convergence of WPG.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26078v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26078v1.pdf",
       "categories": [
         "cs.LG"
       ],
       "topic": "Reinforcement Learning"
     },
     {
-      "title": "Vision-Based Agile Landing on Turbulent Waters",
-      "authors": "Dimosthenis Angelis, Leonard Bauersfeld, Davide Scaramuzza, Evangelos Boukas",
-      "abstract": "Autonomous landing of Unmanned Aerial Vehicles on maritime vessels is challenging due to the coupled motion of the vehicle and landing platform in open-sea conditions. This paper presents a reinforcement-learning-based approach for autonomous multirotor landing on moving maritime platforms without requiring explicit platform-state information. The proposed method uses multirotor state measurements together with local visual features, consisting of keypoints and associated descriptors extracted from the landing surface, to predict attitude and thrust commands. These commands are tracked by a conventional low-level controller. The policy is trained in simulation using synthetic keypoints with randomly generated normalized descriptors, enabling zero-shot deployment with different local feature extractors onboard the UAV. We evaluate the method in a realistic simulator and show that it outperforms a state-of-the-art Model Predictive Control baseline under platform motions corresponding to ``Very Rough'' sea conditions. Finally, we perform extensive real-world experiments, demonstrating autonomous onboard landing using two different local feature extractors. To the best of our knowledge, this is the first approach for agile multirotor landing on maritime platforms in turbulent waters that does not rely on an explicit platform-state representation.",
-      "published": "2026-05-22",
-      "link": "http://arxiv.org/abs/2605.23717v1",
-      "pdfLink": "http://arxiv.org/pdf/2605.23717v1.pdf",
+      "title": "AI-Powered Sustainable Finance: An Integrative Taxonomy and Framework of AI Applications for Sustainable Investment Decision-Making",
+      "authors": "Eduardo C. Garrido-Merchán, Esther Vaquero Lafuente, Elisa Aracil",
+      "abstract": "The integration of Artificial Intelligence into sustainable finance represents a transformative paradigm shift in how Environmental, Social, and Governance factors are analyzed, predicted, and incorporated into investment decisions. This review provides a comprehensive taxonomy of AI approaches applicable to sustainable investment decision-making, categorizing methodologies based on their underlying algorithms and their impact on ESG-related financial processes. The proposed AI Taxonomy includes machine learning paradigms -- including supervised, unsupervised, and reinforcement learning -- as well as natural language processing techniques and optimization algorithms, examining their specific applications in ESG score prediction, controversy detection, portfolio management, and sustainability report analysis. By synthesizing findings from the recent literature, a framework emerges on AI-powered sustainable finance that identifies technological applications to overcome ESG data barriers.",
+      "published": "2026-05-25",
+      "link": "http://arxiv.org/abs/2605.26076v1",
+      "pdfLink": "http://arxiv.org/pdf/2605.26076v1.pdf",
       "categories": [
-        "cs.RO"
+        "cs.CE"
       ],
       "topic": "Reinforcement Learning"
     }

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T04:39:28.591693",
+  "lastUpdated": "2026-07-02T04:07:37.691631",
   "topics": {
     "ai_ml": {
       "name": "AI & Machine Learning",
@@ -20,128 +20,38 @@
   },
   "papers": [
     {
-      "title": "FaceMoE: Mixture of Experts for Low-Resolution Face Recognition",
-      "authors": "Kartik Narayan, Vishal M. Patel",
-      "abstract": "Low-resolution face recognition (LR-FR) remains a challenging task due to poor feature extraction and aggregation, as probe images often contain limited identity information resulting from extreme degradations such as blur, occlusion, and low contrast. Additionally, the domain gap between high-resolution (HR) gallery images and low-resolution (LR) probe images poses a significant challenge. A single feature encoder struggles to generalize effectively across both domains when fine-tuned on an LR dataset, and this issue is further magnified by catastrophic forgetting. To address these challenges, we propose FaceMoE, an effective adaptation of Mixture of Experts (MoE) transfomer architecture for low-resolution face-recognition . Specifically, we introduce multiple specialized feed-forward network (FFN) experts and incorporate a top-k router, which dynamically assigns tokens to appropriate experts. This design emergently promotes specialization across experts for different semantic regions of the face, which enables FaceMoE to perform resolution-aware feature extraction. Moreover, the top-k router facilitates sparse expert activation, enabling the model to preserve pretrained knowledge when finetuned on a LR dataset, while increasing model capacity without proportional computational overhead. FaceMoE is trained with a combined face recognition loss, router z-loss, and load balancing loss to ensure expert specialization and stable training. To the best of our knowledge, this is the first work leveraging MoE for LR-FR. Extensive experiments across eleven datasets, spanning HR, mixed-quality, and LR benchmarks, demonstrate that FaceMoE significantly outperforms state-of-the-art methods. Code: https://github.com/Kartik-3004/FaceMoE",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32040v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32040v1.pdf",
-      "categories": [
-        "cs.CV"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "GEAR: Guided End-to-End AutoRegression for Image Synthesis",
-      "authors": "Bin Lin, Zheyuan Liu, Chenguo Lin, Sixiang Chen, Yunyang Ge, et al.",
-      "abstract": "Visual generative models are typically trained in two stages. A tokenizer is first trained for reconstruction and then frozen, after which a generator is trained on its discrete indices or continuous latents. This decoupling leaves the tokenizer unaware of what the generator finds easy to model. We present GEAR (Guided End-to-end AutoRegression), which trains a vector-quantized (VQ) tokenizer and an autoregressive (AR) generator jointly and end-to-end, guided by representation alignment. The key obstacle is that the VQ index fed to the AR model is non-differentiable, so gradients cannot reach the tokenizer, and a straight-through estimator collapses. GEAR resolves this with a dual read-out of the codebook assignment. A hard, one-hot branch trains the AR with next-token prediction, while a differentiable soft branch carries a representation-alignment loss that flows back to guide only the tokenizer. The AR model thereby steers its tokenizer toward an index distribution it can predict more easily. This shifts the alignment burden from the tokenizer to the AR: the tokenizer's own features become less DINOv2-like while the AR's become more so, the opposite of diffusion-side recipes that make the latent itself semantic. GEAR speeds up ImageNet gFID convergence by up to 10x relative to the strong LlamaGen-REPA baseline, learns markedly better patch-level and spatially-coherent features, and generalizes across quantizers (VQVAE, LFQ, IBQ) and to text-to-image generation.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32039v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32039v1.pdf",
-      "categories": [
-        "cs.CV"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "Introspective Coupling: Self-Explanation Training Tracks Behavioral Change Despite Fixed Supervision",
-      "authors": "Zifan Carl Guo, Laura Ruis, Jacob Andreas, Belinda Z. Li",
-      "abstract": "When does training language models (LMs) to generate explanations of their predictions yield faithful introspection, rather than superficial imitation? We study LMs trained to explain which features of their inputs influenced their behavior, using models' counterfactual behavior on modified inputs as supervision. Surprisingly, we find that LMs trained on fixed counterfactual explanations derived from earlier checkpoints of themselves, or even from behaviorally similar models in different families, frequently produce explanations more faithful to their own current behaviors than to those of their training targets. This \"introspective\" coupling between LM explanations and behaviors occurs when training explanations remain sufficiently correlated with current behaviors over the course of training, even as behaviors themselves shift. We also show that introspective coupling tracks behavior shifts: when explanation training is provided concurrently with other post-training objectives, explanations track those shifts without requiring updated supervision. This phenomenon appears in multiple tasks, including sycophancy and refusal, and is robust to label noise. Overall, our results show that even fixed datasets of counterfactual explanations can provide scalable and generalizable post-training signal for introspection.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32038v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32038v1.pdf",
+      "title": "Measuring the Gap Between Human and LLM Research Ideas",
+      "authors": "Ziyu Chen, Yilun Zhao, Arman Cohan",
+      "abstract": "LLMs are increasingly used to brainstorm research ideas, but existing evaluations mostly judge individual ideas by novelty, feasibility, or expert preference. We instead ask: how far are current LLM-generated ideas from human researchers? To characterize this gap, we build a large-scale evaluation framework for ideation from high-quality human research papers. For each paper, we reverse-engineer a small set of closely related prior works that likely inspired its core idea. LLMs are then prompted to generate a new idea from the set of paper titles and summaries. We introduce a two-axis research-taste taxonomy to profile each idea by its opportunity pattern and research paradigm, and use it to quantify the divergence between human and LLM ideas. Across idea sets generated by different LLMs, we observe a consistent distributional gap: LLM ideas are disproportionately concentrated around bridge-like opportunities and synthesis methods, whereas the human paper reference distribution spreads more broadly across ways of framing gaps and constructing contributions. This result suggests that strong LLMs can produce a range of reasonable ideas, but that range remains narrower than, and systematically shifted relative to, human research taste.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01233v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01233v1.pdf",
       "categories": [
         "cs.CL",
-        "cs.AI",
-        "cs.LG"
+        "cs.AI"
       ],
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "PointSplat: Compact Gaussian Splatting via Human-Centric Prediction",
-      "authors": "Yujie Guo, Yudong Jin, Lingteng Qiu, Zehong Shen, Zhen Xu, et al.",
-      "abstract": "Producing 3D human representations from input views on the fly is essential for immersive live streaming systems, where representation compactness is as critical as high fidelity given limited computational power and transmission bandwidth. Although recent feed-forward reconstruction methods achieve impressive quality through the view-centric prediction of 3D representations, they repeatedly encode the same subject content across multiple views, leading to significant inter-view redundancy. Our key insight is to perform predictions directly in 3D space, enabling the network to learn and produce a highly compact representation. To this end, we propose PointSplat, a novel human-centric approach that directly infers Gaussian primitives from an input point set. The proposed method first estimates a coarse geometric proxy and performs ray casting to prune redundant points and establish explicit 2D--3D correspondences. Subsequently, it employs a Point-Image Transformer to fuse appearance and geometry features, predicting Gaussian attributes in a single forward pass. This design restricts predictions to foreground regions of interest, substantially reducing the total number of Gaussians while improving novel-view rendering quality. Extensive experiments demonstrate that PointSplat achieves higher efficiency and quality while exhibiting strong robustness to variations in view count and image resolution across multiple datasets.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32036v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32036v1.pdf",
-      "categories": [
-        "cs.CV"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "QVal: Cheaply Evaluating Dense Supervision Signals for Long-Horizon LLM Agents",
-      "authors": "Sergio Hernández-Gutiérrez, Matteo Merler, Ilze Amanda Auzina, Joschka Strüber, Ameya Prabhu, et al.",
-      "abstract": "LLM agents increasingly act over long horizons, where a single trajectory can contain hundreds or thousands of actions. In these settings, outcome-only rewards provide too sparse guidance, failing to inform the model about the goodness of intermediate actions. Dense supervision methods aim to solve this problem by scoring intermediate steps, from intrinsic confidence to self-distillation and embedding similarities. However, it is common practice to evaluate them by measuring the downstream performance of a training pipeline that integrates them. This is expensive, conflates supervision quality with training engineering confounders, and renders different methodological families requiring distinct training setups incomparable. As a result, dense supervision methods are rarely benchmarked on common ground. We introduce QVal, a training-free testbed for directly evaluating dense supervision signals. Given a state-action pair, QVal measures how well a method's score is Q-aligned: whether it orders actions according to the Q-values of a strong reference-policy. This lets us compare signals before any training run and separate signal quality from other engineering choices. We instantiate QVal as QVal-v1.0, benchmarking 21 dense supervision methods across four diverse environments and seven methodological families, with over 1.2K evaluation experiments across six open-weight model backbones. We find that simple prompting baselines consistently outperform recent dense supervision methods from the literature, and that performance clusters strongly by family. These findings hold across model sizes, environments, and observation modalities. QVal is designed to be easily extensible to new environments and methods, enabling researchers to iterate on dense supervision methods before any training run.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32034v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32034v1.pdf",
+      "title": "Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training",
+      "authors": "Zijian Zhang, Rizhen Hu, Athanasios Glentis, Dawei Li, Chung-Yiu Yau, et al.",
+      "abstract": "Reinforcement learning (RL) has become a central component of post-training large language models (LLMs), yet little is understood about how RL adaptation is distributed across transformer layers. Existing approaches typically update all model parameters uniformly, implicitly assuming that every layer contributes similarly to the gains obtained during RL post-training. In this work, we challenge this assumption through a systematic layer-wise study of RL training. Surprisingly, we find that training a single transformer layer can recover most of the gains achieved by full-parameter RL training, and in some cases even surpass it. To quantify this phenomenon, we introduce the quantity layer contribution, which measures the fraction of full RL improvement recovered by training a layer in isolation. Across seven models spanning two model families (Qwen3, Qwen2.5), three RL algorithms (GRPO, GiGPO, Dr. GRPO), and multiple task domains including mathematical reasoning, code generation, and agentic decision-making, we observe a remarkably stable pattern: RL gains are highly concentrated in a small subset of, and in many cases even a single, transformer layers. More strikingly, the same structural pattern consistently emerges: high-contribution layers concentrate in the middle of the transformer stack, while layers near the input and output ends contribute substantially less. The resulting layer rankings remain strongly correlated across datasets, tasks, model families, and RL algorithms.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01232v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01232v1.pdf",
       "categories": [
         "cs.LG",
-        "cs.AI",
         "cs.CL"
       ],
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "SpheRoPE: Zero-Shot Optimization-Free 360 Panorama Generation with Spherical RoPE",
-      "authors": "Or Hirschorn, Aaron Olender, Eli Alshan, Ianir Ideses, Lior Fritz, et al.",
-      "abstract": "We present a zero-shot, training-free and optimization-free framework for generating 360 panoramic images and videos by directly injecting spherical priors into pre-trained diffusion transformers. Existing methods either rely on costly fine-tuning on scarce panoramic data that limits generalization, or leverage multi-step optimization that incurs prohibitive inference latency. We observe that contemporary generative models natively exhibit some panoramic priors from large-scale training. However, these emergent capabilities are insufficient, as the models fundamentally fail to satisfy the rigorous topological constraints imposed by equirectangular projection (ERP). We introduce a zero-shot and optimization-free approach that resolves these constraints at inference time. Spherical RoPE replaces standard rotary position embeddings: low-frequency channels are re-parameterized as 3D Cartesian coordinates to natively encode the spherical manifold, while high-frequency channels are harmonically quantized to enforce exact periodicity. Coupled with complementary Semantic Distortion classifier-free guidance (CFG) that explicitly steers geometry, we avoid retraining and inherit the full creative breadth of state-of-the-art models. Our approach generalizes across diverse backbones and 360 generation modalities. We demonstrate this across text-to-panorama using Flux.1, Flux.2, and LTX-Video backbones, achieving competitive performance against baselines, all while remaining training-free. Project page: https://orhir.github.io/SpheRoPE",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32033v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32033v1.pdf",
-      "categories": [
-        "cs.CV"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "Reinforcement Learning with Metacognitive Feedback Elicits Faithful Uncertainty Expression in LLMs",
-      "authors": "Gabrielle Kaili-May Liu, Avi Caciularu, Gal Yona, Idan Szpektor, Arman Cohan",
-      "abstract": "Metacognition is a critical component of intelligence that describes the ability to monitor and regulate one's own cognitive processes. Yet LLMs exhibit systemic deficiencies in key metacognitive faculties: they hallucinate with high confidence, fail to recognize knowledge boundaries, and misrepresent their internal uncertainty--undermining trustworthiness and reliability. Since monitoring task performance and adapting behavior accordingly are central to metacognition, we posit that models capable of accurately judging their own performance are better positioned to improve it. We operationalize this idea via two novel mechanisms: reinforcement learning with metacognitive feedback (RLMF), a paradigm to refine completion rankings during preference optimization based on the quality of a model's self-judgments of performance, and metacognitive data selection, which uses similar self-judgments to identify high-value training examples, outperforming naive active learning. We apply these innovations to the problem of faithful calibration (FC), a task that is itself fundamentally metacognitive: the goal is to align expressed with intrinsic uncertainty, difficult even for frontier LLMs. We adopt a two-stage, decoupled approach, first using these methods to calibrate the faithfulness of models' self-reported confidence scores, then mapping to natural, context-adaptable linguistic uncertainty via targeted output editing. Extensive experiments show RLMF achieves generalizable, state-of-the-art FC on diverse tasks while preserving accuracy. Further, RLMF surpasses standard RL by up to 63% while enhancing models' ability to assess and express their own capability limits. This positions RLMF as a promising paradigm to enhance LLM metacognition toward improved abilities and alignment, and suggests metacognitive performance as an effective RL signal to overcome limits of prior intrinsic feedback methods.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32032v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32032v1.pdf",
-      "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "When LLMs Read Tables Carelessly: Measuring and Reducing Data Referencing Errors",
-      "authors": "Yuqing Yang, Qi Zhu, Zhen Han, Boran Han, Zhengyuan Shen, et al.",
-      "abstract": "While large language models (LLMs) perform well on table tasks, they still make data referencing errors (DREs), i.e., incorrectly citing or omitting table values, despite understanding the table structure. Beyond final-answer accuracy, DREs directly compromise the correctness and reliability of intermediate reasoning steps. Yet prior studies have only offered limited, small-scale analyses. In this work, we present the first systematic evaluation of tabular data referencing errors across different models and tasks. Our results show that DREs occur across all tested models (1.7B to 20B parameters). Furthermore, we demonstrate that incorporating data referencing as a critic significantly improves answer accuracy up to 12.0%, through critic-based filtering and rejection sampling. Finally, we trained a lightweight 4B-parameter critic model that achieves an average F1 score of 78.2% in detecting both in-distribution and out-of-distribution DREs, and effectively assists inference for larger models.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32029v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32029v1.pdf",
-      "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "Freeform Preference Learning for Robotic Manipulation",
-      "authors": "Marcel Torne, Anubha Mahajan, Abhijnya Bhat, Chelsea Finn",
-      "abstract": "Reward design remains a central bottleneck for autonomous robot policy improvement, especially in long-horizon manipulation tasks where sparse success labels provide too little signal and binary preferences collapse many competing notions of quality into one ambiguous signal. We introduce Freeform Preference Learning (FPL), a method for learning robot policies from freeform human preferences. Rather than asking annotators which of two trajectories is better overall, FPL lets them define natural-language preference axes, such as speed, safety, quality of placement, or carefulness, and provide pairwise preferences along each axis. These annotations are used to learn a language-conditioned reward model that maps a trajectory and preference label to an axis-specific reward. We use this model to train a reward-conditioned policy that optimizes across the multiple human-specified dimensions. Across four real-world and two simulated long-horizon manipulation tasks, FPL improves over sparse-reward and binary-preference methods by 38 percentage points. Beyond improved performance, FPL learns dense progress signals without explicit subtask segmentation, shows compositionality of behavior not present in the data, and allows users to steer the policy towards different behaviors at test time without retraining. Blog post with videos available at https://freeform-pl.github.io/fpl.website/",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32027v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32027v1.pdf",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "topic": "AI & Machine Learning"
-    },
-    {
-      "title": "AdaJEPA: An Adaptive Latent World Model",
-      "authors": "Ying Wang, Oumayma Bounou, Yann LeCun, Mengye Ren",
-      "abstract": "Latent world models enable planning from high-dimensional observations by predicting future states in a compact latent space. However, these models are typically kept frozen at test time: when their predictions become inaccurate, planning can fail, especially under test-time distribution shift. To address this, we propose AdaJEPA, an adaptive latent world model that performs test-time adaptation within the closed loop of model predictive control (MPC). After training, AdaJEPA plans and executes the first action chunk, uses the observed next-state transition as a self-supervised adaptation signal, and replans with the updated model. This closed-loop update continuously recalibrates the world model without additional expert demonstrations. Across a range of goal-reaching tasks, AdaJEPA substantially improves planning success with as few as one gradient step per MPC replanning step.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32026v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32026v1.pdf",
+      "title": "Language-Critique Imitation Learning from Suboptimal Demonstrations",
+      "authors": "Chih-Han Yang, Dai-Jie Wu, Yun-Ping Huang, Ping-Chun Hsieh, Kenneth Marino, et al.",
+      "abstract": "Prior work on imitation learning from suboptimal demonstrations typically relies on compressed supervision signals such as confidence estimates, discriminator scores, or importance weights. These scalar signals are inherently limited, as they cannot explicitly express intermediate reasoning about task progress, failure modes, or corrective actions. We propose a language-critique framework for imitation learning from suboptimal demonstrations that instead leverages natural language as a structured supervision signal, avoiding the collapse of expressive feedback into scalars. Our method first constructs language labels from demonstrations that explicitly describe current progress, identify suboptimal behaviors, and provide fine-grained corrective guidance. We then introduce a language-critique loss that directly trains policies using these structured signals without reducing them to scalars, and instantiate it for both behavior cloning and diffusion policies, yielding LC-BC and LC-DP. We further provide a theoretical result showing that the proposed objective upper-bounds the expert performance gap under standard assumptions. Empirically, we evaluate on diverse continuous control tasks spanning navigation, manipulation, and gameplay, where our methods consistently outperform strong imitation learning and offline reinforcement learning baselines. These results demonstrate that language can serve as a powerful and structured form of supervision for learning robust policies from suboptimal data.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01225v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01225v1.pdf",
       "categories": [
         "cs.LG",
         "cs.AI"
@@ -149,210 +59,284 @@
       "topic": "AI & Machine Learning"
     },
     {
-      "title": "Automated Background Swapping for Robustness against Spurious Backgrounds",
-      "authors": "Cesar Roder, Kajetan Schweighofer",
-      "abstract": "Classifiers based on Deep Neural Networks exhibit strong performance across domains, yet can fail catastrophically if they rely on spurious correlations, i.e., features that are predictive of the target label in the training data but are not causally linked and thus fail to generalize. For the vision domain, many such spurious correlations manifest themselves within the background of the image, where only the foreground is predictive of the class label. In this paper, we introduce Automated Background Swapping (AutoBackSwap) to reduce the reliance of classifiers on such spurious backgrounds. AutoBackSwap uses a secondary network to disentangle the foreground and background, followed by infilling to synthesize complete backgrounds, and finally combines different foregrounds and inpainted backgrounds to augment the training data. We find that patch-wise labeling of just a few hundred samples suffices to train the secondary network and automatically augment the full training dataset on challenging image classification tasks. In contrast to many previous methods, AutoBackSwap proves very effective even if there is not a single sample in the training data breaking the spurious correlation. Across a range of image classification tasks with spurious backgrounds, AutoBackSwap consistently outperforms prior methods.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32018v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32018v1.pdf",
+      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+      "authors": "Shengguang Wu, Hao Zhu, Yuhui Zhang, Xiaohan Wang, Serena Yeung-Levy",
+      "abstract": "Memory expertise is a learned skill: knowing what to encode, when to retrieve, and how to organize knowledge--a capacity known in cognitive science as metamemory. We bring this perspective to LLMs by treating memory management as a trainable skill. We promote file-system operations to first-class memory actions alongside task actions, letting the model itself decide how to manage its memory. This memory skill improves along two axes: the structure that supports it (prompts, file schemas, action vocabulary), and the proficiency of the model exercising it. Both axes resist manual optimization: episodes in long-horizon tasks run for thousands of steps, and a single memory mistake can hide long before it surfaces, making human review of full trajectories impractical. We introduce AutoMem, a framework that automates both axes. In the first loop, a strong LLM reviews complete agent trajectories and iteratively revises the memory structure that shapes how the agent interacts with its memory files. In the second loop, the agent's own good memory decisions are identified from many episodes and used as training signal to sharpen the model's memory proficiency directly. Across three procedurally generated long-horizon games (Crafter, MiniHack, and NetHack), optimizing memory alone--without modifying the model's task-action behavior--improved the base agent's performance ~2x-4x, bringing a 32B open-weight model competitive with frontier systems such as Claude Opus 4.5 and Gemini 3.1 Pro Thinking. Our results show that memory management is an independently learnable skill, and a high-leverage objective yielding large gains on long-horizon tasks.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01224v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01224v1.pdf",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.MA"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "Theoria: Rewrite-Acceptability Verification over Informal Reasoning States",
+      "authors": "Ben Slivinski, Michael Saldivar",
+      "abstract": "When should an AI system's answer be trusted? Formal proof assistants offer certainty but cannot reach most of the problem distribution; scalar LLM judges offer coverage but produce opaque scores that cannot be audited after the fact and are subject to the same coherence issues as any LLM. We present Theoria, a verification architecture that closes this gap. A candidate solution is rewritten into a sequence of typed state transitions, each licensed by an explicit justification, whether that be a citation, computation, or problem-given fact, and every transition is independently auditable. The foundational invariant is completeness of change: every difference between consecutive proof states must be accounted for, so hidden premises surface as unlicensed mutations rather than passing silently. On HLE-Verified Gold (185 text-only expert problems), Theoria certifies 105 at 91.4% strict precision (Wilson 95% CI [84.5%, 95.4%]). Every certification produces a human readable proof trace in which each step can be independently challenged. Holistic LLM judges achieve comparable precision at matched coverage but fail on different problems (Jaccard 0.14-0.36), making the approaches complementary. On 95 adversarial poisoned proofs across 15 domains, structured judges catch 94.7% versus 83.2% for holistic judging (p= 0.0017). The overall 11.5 pp gap concentrates in hidden premises (90.6% vs. 62.5%, a 28 pp difference) and fabricated citations (100% vs. 90%), the error classes where the formal analysis predicts an advantage; performance is identical on arithmetic and theorem-misapplication errors, where no advantage is predicted. On GPQA Diamond (n= 65), certified precision is 97.1% (Wilson CI [85.1%, 99.5%]).",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01223v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01223v1.pdf",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.LO",
+        "cs.SE"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "Ink3D: Sculpting 3D Assets with Extremely Complex Textures via Video Generative Models",
+      "authors": "Yue Han, Chong Li, Zhening Liu, Cong Huang, Fang Deng, et al.",
+      "abstract": "Recent 3D generative models can synthesize high-quality geometry but often struggle to reproduce intricate textures from reference images, largely due to the scarcity of large-scale 3D training data with rich surface appearance. In contrast, visual generative models are trained on datasets several orders of magnitude larger and excel at modeling complex visual patterns. Motivated by this gap, we introduce Ink3D, a framework that bridges 3D generation with large-scale video generative models to synthesize extremely complex textures. Ink3D first reconstructs a white-mesh geometry using an off-the-shelf 3D generation model. It then employs OrbitPainter, a conditional video generative model, to produce dense orbit-scan videos capturing object appearance across viewpoints. To convert these views into coherent textures, we introduce TextureOptimizer, a neural baking module that integrates dense multi-view observations while mitigating geometry inconsistencies arising from video generation. By decoupling geometry and texture synthesis and leveraging large-scale pretrained video priors, Ink3D enables significantly richer and more faithful texture generation than prior approaches.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01222v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01222v1.pdf",
+      "categories": [
+        "cs.CV"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "The State-Prediction Separation Hypothesis",
+      "authors": "Giovanni Monea, Nathan Godey, Kianté Brantley, Yoav Artzi",
+      "abstract": "Transformers use the same forward computation stream to both predict the next token and store useful state for future token predictions. We formulate the \\emph{state-prediction separation hypothesis}: disentangling the two roles yields better language modeling performance. We design a Transformer variant that uses two computation streams to separate the two functions, and conduct pretraining experiments across various scales. Our experiments show that state-prediction separation consistently offers better data and compute efficiencies, improving validation loss and outperforming standard Transformers by 2--3 percentage points on average on downstream tasks. We also conduct extensive empirical analysis that rules out potential confounders and demonstrates the fundamental difference in the gradients our design entails.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01218v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01218v1.pdf",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "FurnitureVLA: Learning Long-Horizon Bimanual Furniture Assembly with Vision-Language-Action Model",
+      "authors": "Chenyang Ma, Yue Yang, Radu Corcodel, Siddarth Jain, Andrew Wu, et al.",
+      "abstract": "Current work on robot furniture assembly mostly focuses on toy-scale settings or single-arm manipulation. We introduce FurnitureVLA, the first systematic study of real-scale bimanual furniture assembly using Vision-Language-Action models (VLAs). We formalize the task, develop a scalable simulation pipeline for expert data generation and evaluation, and build a VR teleoperation system for single-operator bimanual control to collect high-quality real-world demonstrations. To address extreme long-horizon assembly with up to 7 subtasks and 1550 control steps, we propose a progress-enhanced VLA, finetuned on semantically grounded subtasks, that jointly predicts actions and a continuous progress signal, enabling automatic subtask transitions and reducing compounding errors during inference. We further study perception and control design factors that critically affect precision in real-scale assembly. FurnitureVLA improves average simulation success from 48% to 80% compared to baselines across three furniture types, with an additional 21% gain from our design factor study. We validate on a real Kinova Gen3 platform with only 16% drop on the hardest task.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01212v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01212v1.pdf",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "Are Performance-Optimization Benchmarks Reliably Measuring Coding Agents?",
+      "authors": "Zhi Chen, Zhensu Sun, Yuling Shi, David Lo, Lingxiao Jiang",
+      "abstract": "Repository-level performance-optimization benchmarks such as GSO, SWE-Perf and SWE-fficiency evaluate coding agents by applying patches to real repositories and comparing runtime against unoptimized baselines and official reference patches. Their leaderboard scores are increasingly used as evidence of coding-agent progress, but those scores can conflate runtime instability, benchmark-specific scoring rules, and how many tasks are already solved by at least one public submission. We audit these issues across the three benchmarks. First, we replay the official reference patches for 740 code optimization tasks across four common types of Google Cloud machines. Most benchmark tasks can be replayed, but their reference patches satisfy the original benchmark validity rules in every cross-machine replay for only 39/102 GSO tasks, 11/140 SWE-Perf tasks, and 411/498 SWE-fficiency tasks; SWE-Perf is especially fragile because many reference patches produce close-to-zero runtime changes. Second, we show that public submission rankings depend strongly on the benchmark scoring rule. Among eight public submissions shared by GSO and SWE-fficiency, the official rankings disagree on 9 of 28 pairwise submission comparisons, and SWE-fficiency's leaderboard scoring rule assigns the worst ten tasks overly high score weights of 58.5%-82.8%. Third, looking across 10 public submissions for each task, we find that at least one submission matches or beats the reference patch on 85.3% (384/450) of replay-valid GSO and SWE-fficiency tasks, and beats the unoptimized base code on 99.8% (449/450). Our study complements leaderboard scores by identifying tasks with more reliable performance signals, quantifying per-task score contributions, and exposing the remaining performance gaps that are hidden by aggregate rankings.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01211v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01211v1.pdf",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "Distill to Detect: Exposing Stealth Biases in LLMs through Cartridge Distillation",
+      "authors": "Shayan Talaei, Abhinav Chinta, Devvrit Khatri, Amin Karbasi, Azalia Mirhoseini, et al.",
+      "abstract": "Language models deployed in high-stakes roles can potentially favor certain entities, brands, or viewpoints, steering user decisions at scale. Such preferential biases can be introduced by any actor in the model's supply chain and are most dangerous when the model reveals its preference only on the relevant topic while behaving identically to its unmodified base on all other inputs. Recent work has shown that these biases can transfer through context distillation on semantically unrelated data, with the signal residing entirely in the soft logit distribution and remaining invisible to text-based inspection. However, the defender faces a fundamental asymmetry: without knowing the bias topic, no detection method can reliably surface a stealth preferential bias, regardless of whether it examines generated text, internal representations, or model weights. Here we introduce Distill to Detect (D2D), a method that surfaces hidden biases by distilling the distributional shift between a suspected model and its base into a cartridge (a KV-cache prefix adapter), concentrating the dominant divergence and amplifying the bias signal into generated text. We show that D2D successfully amplifies the hidden biases of stealth models to the extent that they can be reliably detected across multiple bias types. We also propose a theoretical framework that explains the efficacy of D2D through the lens of Fisher-weighted projection of the logit distribution shift, supported by empirical observations. By turning the capacity bottleneck of prefix-tuning adapters into a detection tool, D2D provides a practical building block for auditing hidden behaviors in deployed language models.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01208v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01208v1.pdf",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "topic": "AI & Machine Learning"
+    },
+    {
+      "title": "TiRex-2: Generalizing TiRex to Multivariate Data and Streaming",
+      "authors": "Patrick Podest, Marco Pichler, Elias Bürger, Levente Zólyomi, Bernhard Voggenberger, et al.",
+      "abstract": "We introduce TiRex-2, a recurrent xLSTM-based time series foundation model that generalizes the univariate TiRex to multivariate forecasting with both past and future covariates. Real-world forecasting is inherently sequential: observations arrive continuously, variables evolve jointly, and a subset of covariates is known ahead of time. Existing Transformer-based time series foundation models capture cross-variate dependencies but incur quadratic complexity in context length and require full-history recomputation as new observations arrive. TiRex-2 addresses these limitations through a memory-centric recurrent design that operates at constant per-patch cost under streaming. The model combines a bidirectional time mixer with an asymmetric grouped-attention variate mixer, enabling the integration of future-known covariates while preserving strict causality over target variables. To our knowledge, this is the first time series foundation model that achieves this combination of properties. To support scalable multivariate pretraining, we propose a synthetic coupling pipeline that composes diverse multivariate samples on the fly from large univariate corpora. Empirically, TiRex-2 achieves state-of-the-art zero-shot performance on GIFT-Eval and fev-bench, remains stable when streamed to arbitrary context lengths, and maintains constant inference cost per patch. The model uses 38.4M active parameters in univariate mode, with an additional 44.1M parameters activated for multivariate forecasting.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01204v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01204v1.pdf",
+      "categories": [
+        "cs.LG"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Autonomous Scientific Discovery via Iterative Meta-Reflection",
+      "authors": "Bingchen Zhao, Sara Beery, Oisin Mac Aodha",
+      "abstract": "Autonomous scientific discovery systems offer the potential to accelerate research by automating the process of hypothesis generation and validation. However, current systems operate within constrained search spaces or require predefined research questions, limiting their capacity for true open-ended inquiry. Furthermore, while they generate hypotheses iteratively, they largely lack the ability to explicitly synthesize their own accumulated findings to uncover complex, interconnected phenomena. We introduce DiscoPER, an autonomous large language model-powered framework that conducts open-ended research by dynamically generating and executing code to explore datasets without pre-specified research objectives. To ensure rigorous scientific validity, every proposed discovery must pass statistical testing. To overcome the limitations of isolated search, our framework introduces a second-order reasoning mechanism that periodically analyzes its own accumulated discoveries. By treating prior discoveries as empirical data, DiscoPER identifies structural patterns, confounds, and epistemic gaps, actively redirecting hypothesis exploration toward uncharted regions of the search space. The search space is further expanded by incorporating tool use, enabling the system to explore hypotheses beyond structured metadata by seamlessly processing and extracting useful information from multimodal sources like images. Evaluated on iNatDisco, a new multimodal ecological knowledge benchmark with pattern-level ground truth obtained from peer-reviewed literature, DiscoPER recovers 8 of 9 known patterns with a 72.7% hypothesis support rate, outperforming both classical causal discovery and LLM-guided baselines. Ablations show that DiscoPER scales with more data, and confirms the benefits of second-order meta-reflection.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01131v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01131v1.pdf",
       "categories": [
         "cs.CV",
-        "cs.LG"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Surrogate Fidelity: When Can Open LLMs Explain Closed Ones?",
-      "authors": "Philippe Chlenski, Zachariah Carmichael, Ayush Warikoo, Chia-Tse Shao, Yingxiao Ye, et al.",
-      "abstract": "Mechanistic interpretability (MI) requires full access to model internals, yet the APIs for most widely deployed language models at best expose log-probabilities over output tokens. This creates a surrogate problem: when do measurements made on open models allow us to make claims about a closed model? We evaluate surrogate fidelity at the prediction, attribution, and representation levels. For binary classification tasks, log-odds provide an API-compatible scalar readout of the model's representation space, and leave-one-out attributions provide insight into model behavior. Across eleven models spanning four families (Llama, Qwen, GPT, and Gemini), we find that prediction fidelity substantially overstates attribution fidelity: models that agree on what the answer is often disagree on why. We document an access-validity inversion: white-box signals like attention patterns and perturbation magnitudes are highly stable across models but only weakly predictive of causal attributions, which black-box input ablations capture by design. Mechanistic insight does not automatically transfer to closed targets, and prediction-level agreement is insufficient to warrant such transfer. Code and results are available at https://github.com/facebookresearch/surrogate.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32008v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32008v1.pdf",
-      "categories": [
-        "cs.LG"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Scientific Explanations in Health Sciences: Causality, Trust, and Epistemic Adequacy",
-      "authors": "Martina Mattioli, Marcello Pelillo",
-      "abstract": "Medical Artificial Intelligence (AI) is widely expected to transform clinical practice, yet the decision-making processes of many Machine Learning (ML) models remain opaque. Explainability has been advanced as a partial remedy to clarify why AI generates predictions, particularly in high-stakes contexts. Despite ongoing efforts, debates on what constitutes an adequate medical explanation remain unsettled. Yet, explanation has long been a central topic of inquiry in the philosophy of science and medicine. The insights developed in these fields, however, have been largely overlooked in contemporary explainable AI (XAI) research, leaving its foundational assumptions insufficiently examined. To address this gap, this paper develops a critical review at the intersection of philosophy of science and XAI. It examines prevailing accounts of what counts as an explanation in the health sciences and assesses their adequacy for informing XAI in medicine, arguing that they provide necessary conditions for a philosophically grounded approach to explainability in this domain. Building on this foundational philosophical literature, the discussion identifies three central axes of analysis: the role of causality in medical reasoning, the epistemic and relational dimensions of medical trust, and the criteria of explanatory adequacy as shaped by the pragmatic needs of diverse stakeholders. By integrating philosophical analysis with current developments in medical AI, the paper outlines principles for designing XAI systems that offer explanations that are not only epistemically robust but also aligned with the epistemic and practical requirements of clinical decision-making, shaping ongoing debates in medical XAI toward underexplored conceptual foundations.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31616v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31616v1.pdf",
-      "categories": [
         "cs.AI"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "One Reflection Is Not Enough: Self-Correcting Autonomous Research via Multi-Hypothesis Failure Attribution",
-      "authors": "Jie Ma, Binfei Chu, Jie Gao, Jinlu Zhang, Yiwei Ma, et al.",
-      "abstract": "Autonomous research agents can now draft hypotheses, write code, run experiments, and produce papers, but they remain brittle when experiments fail. Under the prevailing paradigm, failure recovery is usually delegated to a single free-form reflection: a rich trajectory of metrics, logs, and design choices is compressed into one verbal critique, which often leads either to localized trial-and-error or to hard pivots that discard useful context. We propose SAGE, a Self-correcting, Autonomous, Grounded Experimenter, to tackle this failure-recovery bottleneck. Its core mechanism, Multi-Hypothesis Failure Attribution (MHFA), treats recovery as a structured causal diagnosis. By analyzing dynamic trajectory features, MHFA systematically generates multiple evidence-grounded explanations for a failure, independently evaluates their severity, and deterministically routes the verified root cause to the correct intervention level (hypothesis, experimental design, or implementation). To guarantee scientific honesty, SAGE further employs a grounded reporting mechanism that explicitly constrains drafted results to actual measured values, redacting hallucinated numbers. On a 12-topic, 5-domain benchmark, SAGE increases metrics-bearing outputs from 42% to 92% over a reflection baseline, improves artifact quality from 5.00 to 6.75/10, and blindly outscores AI-Scientist-v2 (52.0 vs. 48.2), with gains concentrated in code development and execution. While fully autonomous scientific writing and generating conference-ready papers remain notoriously difficult open problems for the entire field, SAGE successfully produces significantly more reliable and higher-quality scientific artifacts. Ultimately, by coupling structured recovery with explicit grounding constraints, SAGE significantly outperforms monolithic reflection paradigms, establishing a highly trustworthy foundation for future autonomous research.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31478v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31478v1.pdf",
-      "categories": [
-        "cs.AI",
-        "cs.CV"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Can Tabular In-Context Learners Generalize to Biomolecular Property Prediction?",
-      "authors": "Davy Guan, Lu Zhang, Asiri Wijesinghe, Allen Zhu, He Zhao, et al.",
-      "abstract": "Predicting biomolecular properties from limited labeled data is a central bottleneck in protein engineering and small-molecule design. As strong pretrained encoders now supply rich fixed-length representations, the difficulty has shifted from representation learning to building a data-efficient predictor for the few-shot regime. Tabular foundation models such as TabPFN3 and TabICL are unlikely candidates for this role: they are in-context learners pretrained on synthetic tables drawn from random causal graphs, a generative prior with no obvious correspondence to the processes that produce protein sequences or molecular graphs. That this tabular, causal inductive bias should transfer to biomolecular data at all is unintuitive, yet we find it does. Treating each method as a predictor-representation pair, we evaluate across two domains. Over a fixed ESMC representation, tabular in-context learning is consistently competitive for protein fitness regression on ProteinGym and a diverse esterase dataset. For small-molecule classification with ECFP/RDKit descriptors, no single pairing dominates across TDC ADMET, MoleculeNet, FS-Mol, and DrugOOD; representation choice becomes a primary determinant, as expected when the predictor's own prior is indifferent to molecular structure. We conclude that tabular foundation models are strong performers on biomolecular prediction tasks, but that their performance depends strongly on the sequence or molecular representation used.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31126v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31126v1.pdf",
+      "title": "CausalMix: Data Mixture as Causal Inference for Language Model Training",
+      "authors": "Zinan Tang, Yukun Zhang, Shaomian Zheng, Zhuoshi Pan, Qizhi Pei, et al.",
+      "abstract": "In Large Language Model (LLM) training, data mixing plays a pivotal role in determining model performance. Recent methods optimize mixture weights via proxy models, but they rely on the assumption of static data distributions. As a result, when the underlying data pool shifts, these methods require costly retraining from scratch. This limitation restricts their ability to scale seamlessly from small settings to larger data pools and model sizes. In this paper, we propose CausalMix to address this limitation by casting data mixture optimization as a causal inference problem. We formulate the statistical features of the data pool as covariates and the domain mixture as the treatment. After fitting a causal model on 512 runs of Qwen2.5-0.5B to estimate the Conditional Average Treatment Effect (CATE), we extrapolate the optimal mixture for an 800K data pool and apply it to train a 7B model. Furthermore, we successfully generalize the framework to long chain-of-thought data on Qwen3-4B-Base. By leveraging causal modeling to isolate confounding biases, CausalMix dynamically infers state-dependent optimal data mixtures. Extensive experiments show that the mixture guided by CausalMix consistently improves performance across multiple downstream tasks, outperforming RegMix and other baselines. In addition, we use the CATE Interpreter to provide visual analysis of the learned mixing strategy. Overall, CausalMix offers a causal and interpretable framework for optimizing LLM data mixtures.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01104v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01104v1.pdf",
       "categories": [
         "cs.LG",
-        "q-bio.QM",
-        "stat.ML"
+        "cs.AI",
+        "cs.CL"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "What Probing Reveals about Autonomous Driving: Linking Internal Prediction Errors to Ego Planning",
-      "authors": "Hyeonchang Jeon, Kyungbeom Kim, Eugene Vinitsky, Kyung-Joong Kim",
-      "abstract": "Large-scale datasets and fast simulators have enabled improvements in driving policies that appear safe and robust, yet strong performance in nominal scenarios can still mask flawed reasoning and unsafe heuristics. Summary scores from closed-loop simulators do not give significant insight into the policy, making it difficult to determine whether they truly predict the motion of surrounding vehicles, how the ego vehicle generates future plans, or whether they merely rely on brittle heuristics that happen to succeed in nominal scenarios. To better understand the limits and weaknesses of driving policies, we focus on probing for forms of prediction, i.e., where surrounding vehicles will move next, and planning, i.e., understanding how to generate safe trajectories. We focus on these two capabilities because they reflect behaviors expected of effective driving policies, and use their presence or absence to assess policy quality across data-driven behavior cloning and simulation-driven reinforcement learning policies. To evaluate the presence of these capabilities, we investigate them as a function of scale, asking whether the closed-loop gains from larger datasets and longer simulation training reflect stronger prediction and planning or merely better behavioral heuristics. We use linear probing and targeted perturbations in both imitation learning and reinforcement learning models to track when these internal signals emerge, plateau, or fail. Despite good closed-loop performance, policies often fail to form timely surrounding-vehicle predictions during near-collision events, revealing a limitation in the predictive signals available for ego planning. Finally, causal intervention shows that correcting mistaken predictions improves ego planning toward safer trajectories.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31106v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31106v1.pdf",
+      "title": "Reading Order Inference for Complex Document Layouts",
+      "authors": "Iddo Hakim, Sharva Gogawale, Omer Ventura, Gal Grudka, Daria Vasyutinsky-Shapira, et al.",
+      "abstract": "Reading order inference remains a critical bottleneck in the digitization of complex historical manuscripts, where pages contain multiple spatially interleaved reading streams, the canonical example being the Glossa Ordinaria layout, in which a central text is surrounded by commentaries that wrap around it in non-rectangular, non-convex regions. We present a training-free, graph-based framework: each OCR text line becomes a node in a directed candidate-transition graph, edges are scored by a weighted additive ensemble of two lightweight language-model signals (causal language model conditional likelihood and BERT next-sentence prediction, NSP; a third sentence-embedding signal was evaluated but did not improve reading order), and the global reading order is recovered as a degree-constrained directed path cover. To avoid the cascading \"edge-theft\" failures of greedy edge selection, we propose a max-regret inference rule that prioritizes commitments with high opportunity cost. We evaluate on synthetic Glossa Ordinaria grid layouts, on 23 ALTO page geometries (10 historical source pages plus mirrored and flipped variants), and on a 140-page multi-column English subset of OmniDocBench, comparing our method against the canonical recursive XY-cut (PaddleOCR PP-StructureV3) and two LayoutReader variants (layout-only and text+layout) on identical inputs. On wrap-around Glossa layouts our method recovers 95% of ground-truth successor edges on average vs. XY-cut's 50%; on the OmniDocBench multi-column subset it reaches 88% macro edge accuracy versus XY-cut's 75% and LayoutReader's 25%. The LayoutReader baselines transfer poorly due to a word-level vs. line-level granularity mismatch. We additionally verify mirror-invariance under horizontal and vertical page reflections: Our method changes by less than 1 percentage point, classical XY-cut by 2 points, and LayoutReader-T by up to 8 points.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01018v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01018v1.pdf",
       "categories": [
-        "cs.RO",
+        "cs.CL",
+        "cs.AI",
+        "cs.CV",
+        "cs.DL"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "LeNEPA: No-Augmentation Next-Latent Prediction for Time-Series Representation Learning",
+      "authors": "Alexander Chemeris, Ming Jin, Randall Balestriero",
+      "abstract": "Time series are central to modern data mining applications, from industrial telemetry and server metrics to finance and physiology, yet time-series self-supervised learning often depends on view and augmentation choices that encode domain-specific invariances. We study how an SSL recipe behaves when its method-specific configuration is reused unchanged after the pretraining signal family changes, framing this as a fixed-recipe stress test rather than a comparison against optimally tuned methods. We introduce Latent Euclidean Next-Embedding Prediction Architecture (LeNEPA), a no-augmentation next-latent-token objective with a causal backbone. LeNEPA replaces the stop-gradient/EMA stabilization used by vanilla NEPA with SIGReg-based isotropy regularization and computes the predictive loss in a lightweight projected space that is discarded for evaluation. We compare LeNEPA with an ECG-tuned JEPA recipe under a fixed-horizon frozen-probe protocol on PTB-XL and Diag, a synthetic diagnostic corpus generated with Aionoscope. Both methods are retrained independently on each dataset while keeping their method-specific recipes unchanged. In this protocol, the ECG-tuned JEPA recipe is strong in-domain on PTB-XL but weaker when reused unchanged on Diag, whereas LeNEPA preserves useful frozen-probe gains on both datasets. Learning curves suggest faster early representation acquisition: LeNEPA reaches 80% of its final AUROC/AUPRC gain after 2--5k updates, compared with 5--10k updates for the faster JEPA readout. As a separate external frozen-encoder check, a CauKer-pretrained LeNEPA variant reaches 77.65% mean UCR-128 Random-Forest accuracy in a single-seed, best-checkpoint run, within 1.16 points of Mantis and within 0.24 points of MOMENT (77.89%). Overall, the results support no-augmentation latent prediction as a useful candidate recipe for low-retuning time-series SSL.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.00958v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.00958v1.pdf",
+      "categories": [
+        "cs.LG"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Graph-Native Reinforcement Learning Enables Traceable Scientific Hypothesis Generation through Conceptual Recombination",
+      "authors": "Subhadeep Pal, Shashwat Sourav, Tirthankar Ghosal, Markus J. Buehler",
+      "abstract": "Accelerating materials discovery requires AI systems that can generate scientifically valid hypotheses through multi-step, domain-grounded reasoning. Standard large language models often produce fluent but weakly traceable responses to open-ended materials design problems, making it difficult to determine whether final answers are supported by coherent intermediate reasoning. We develop Graph-PRefLexOR, a family of graph-native reasoning models fine-tuned with Group Relative Policy Optimization (GRPO) to organize reasoning into explicit phases for mechanism exploration, graph construction, pattern extraction, and hypothesis synthesis. This design links neural language generation with symbolic relational structure, enabling causal connections to be constructed, inspected, and reused. On 100 open-ended questions from materials science and mechanics literature, Graph-PRefLexOR achieves 40-65% improvements over corresponding base models, with the largest gains in reasoning traceability. Embedding analyses show broader semantic exploration and approximately 2-3 times greater semantic diversity than baselines. Semantic backtracking and layer-wise hidden-state analyses further show stronger alignment between structured reasoning and final answers. Finally, test-time graph expansion reveals that additional compute primarily increases long-range conceptual recombination within a bounded semantic space, rather than simply expanding semantic coverage. These results establish graph-native reinforcement learning as a pathway toward interpretable AI systems for scientific hypothesis generation in materials design and other scientific applications.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.00924v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.00924v1.pdf",
+      "categories": [
+        "cs.AI",
+        "cond-mat.mtrl-sci",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Faithful by Definition: Emotion Analysis via Natural Semantic Metalanguage Explications",
+      "authors": "Frank Xing, Erik Cambria",
+      "abstract": "Explanations for emotion classifiers are usually produced post hoc, with no guarantee that they reflect the computation behind the label. We present an explication interface for event-based emotion analysis. A parser maps the input text to an explication, a short script in the closed vocabulary of Natural Semantic Metalanguage organized into twelve typed slots, and a fixed decision list of rules transcribed from published semantic definitions computes the label from the explication alone. The faithfulness guarantee is therefore causal and definitional, while all empirical risk lives in the learned parser, which the per-line entailment interface makes auditable against the input. On crowd-sourced event descriptions, our fine-tuned parser reaches 0.33 accuracy and 0.48 selective accuracy on a small held-out set, suggesting that the interface trades insignificant accuracy difference to a black-box model for a verifiable, inspectable decision basis for first-person event-based emotion analysis. We also release EmoExpl-1200 with per-line verification metadata and the full rule set.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.00661v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.00661v1.pdf",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "topic": "Causal Inference"
+    },
+    {
+      "title": "Auditing Forgetting in Limited Memory Language Models",
+      "authors": "Arya Raeesi, Hanna Roed",
+      "abstract": "Limited Memory Language Models (LMLMs) externalize factual knowledge to a database to enable deletion-based unlearning without retraining. Existing evaluations measure post-deletion correctness in aggregate and cannot tell whether a deleted fact persists through residual parametric memory, alternative retrieval paths, or near-neighbor retrieval artifacts. We propose a causal auditing framework that holds the model fixed and varies the database state at inference time across three interventions: FULL, DEL-ON, and DEL-OFF. The framework decomposes post-deletion behavior into parametric leakage L(f), retrieval-mediated correctness R(f), and a retrieval artifact rate grounded in the inference-time retrieval trace. We apply it to 12,228 alias-closure deletions across thirteen databases, including four adversarial topologies (Base, Alias, Noise, Collision) we construct in three domains, and six prompt formulations. Parametric leakage is near zero in every variant and every prompt style: the model rarely returns the deleted answer in the absence of retrieval. The residual that does survive lives in the retrieval graph: retrieval-mediated correctness and the retrieval artifact rate match within rounding everywhere, so post-deletion correctness is, in our audit, predominantly reconstituted from near-neighbor retrieval. This residual ranges from 0.7% on the released LMLM database to 13.6% on the most adversarial variant, and prompt formulation does not independently control how much of a deleted fact survives. These results suggest that, for this class of LMLM and deletion procedure, the unlearning boundary is drawn primarily by the database administrator rather than by the model.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.00605v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.00605v1.pdf",
+      "categories": [
+        "cs.CL",
         "cs.AI",
         "cs.LG"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "Beyond But-for Test: Counterfactual Explanation in Abstract Argumentation via Actual Causality (Extended Version)",
-      "authors": "Siyi Liu, Muyun Shao, Beishui Liao",
-      "abstract": "Counterfactual explanation in abstract argumentation calls for an answer to the what-if query: would the topic argument still be accepted if the status of certain other arguments were changed? Existing approaches are limited to the but-for test and fail to accommodate more refined counterfactual conditions. To overcome these limitations, we introduce an intervention-based counterfactual reasoning framework in abstract argumentation. Our approach encodes the acceptance conditions of arguments as equations, then defines an intervention operator that supports (1) changing sets of arguments simultaneously, and (2) fixing witness arguments to their actual labels. Guided by the refined counterfactual condition introduced in the Halpern-Pearl definition, our method goes beyond the but-for test, thereby correctly identifying causes in argumentation structures such as Preemption and Overdetermination. Through comparison, we show that our method surpasses prior methods in both expressiveness and reliability.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31080v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31080v1.pdf",
+      "title": "MEPA: Multi-Scale Representation Alignment for Visual Autoregressive Modeling with Mixture of Experts",
+      "authors": "Nuoyan Zhou, Zhijun Tu, Lei Yu, Kun Cheng, Jie Hu, et al.",
+      "abstract": "Visual AutoRegressive modeling (VAR) has pioneered a coarse-to-fine multi-scale autoregressive generative paradigm, demonstrating strong capabilities in image generation. However, VAR still suffers from inherent deficiencies in multi-scale representation learning. Specifically, lower scales primarily capture global semantics, while higher scales focus on fine-grained details. Employing a shared architecture across scales induces optimization conflicts. Moreover, due to the causal autoregressive process, inaccurate semantics at early scales can propagate and significantly degrade the final output. To address these issues, we introduce a scale-aware token-routed Mixture of Experts (MoE) architecture, allowing scale-adaptive expert selection, thereby facilitating decoupled representation learning across scales. In addition, we enhance semantic modeling at early scales by incorporating external self-supervised features. Unlike naive alignment, we analyse and design a residual feature aggregation scheme tailored to the VAR paradigm. Extensive experiments show that our method significantly improves both training efficiency and generation quality. On the ImageNet 256*256 benchmark, our model achieves a superior FID compared to the dense baseline while requiring only half of the default training epochs and a smaller parameter budget, with a merely marginal increase in training cost. Moreover, the performance gap further widens with larger training epochs.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.00371v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.00371v1.pdf",
       "categories": [
-        "cs.LO",
+        "cs.CV",
         "cs.AI"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "Estimating Supply Incrementality in Two-sided Marketplaces: A Causal Machine Learning Approach",
-      "authors": "Yufei Wu, Daniel Schmierer, Dan Zylberglejd",
-      "abstract": "In two-sided marketplaces with heterogeneous products, it is important to understand the causal relationship between additional supply and marketplace outcomes, such as the total quantity transacted or transaction value in the marketplace. This paper studies a causal machine learning approach to estimating this relationship across product segments. We use the Airbnb marketplace as an example, focusing on the impact of additional listing supply on total bookings, but the methodology applies to other two-sided marketplaces. Our approach combines double/debiased machine learning with a hierarchical Bayesian framework that leverages pre-existing knowledge as priors. We construct tractable and informative features for the model by leveraging measures of product segment similarity from the geospatial literature. We find that such a model provides plausible estimates of the marketplace returns to additional supply and strong out of sample performance.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.30999v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.30999v1.pdf",
+      "title": "Understanding Guest Preferences and Optimizing Two-sided Marketplaces: Airbnb as an Example",
+      "authors": "Yufei Wu, Daniel Schmierer",
+      "abstract": "Airbnb is a community based on connection and belonging -- many hosts on Airbnb are everyday people who share their worlds to provide guests with the feeling of connection and being at home; Airbnb strives to connect people and places. Among our efforts to connect guests and hosts, we provide tools to enable hosts to set competitive prices, which helps improve affordability for guests while helping hosts get more bookings. We also personalize the guest experience to show them the listings that match their needs.   To help inform these efforts, we combine economic modeling and causal inference techniques to understand how guests book stays based on the prices hosts set, among other factors, and how that preference varies across different guests and listings. Such understanding helps us identify opportunities for Airbnb to support the marketplace and better connect guests and hosts. For example, understanding how much guests respond to different prices helps optimize the tools that we provide to hosts, in order to enable hosts to choose and set competitive prices that further balance demand and supply. As another example, understanding heterogeneity in guest preferences helps us personalize the guest experience and better match them with the listings that meet their needs, based on how much they respond to different prices and other factors.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.00280v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.00280v1.pdf",
       "categories": [
         "cs.LG",
+        "cs.CY",
         "econ.EM",
-        "stat.AP",
-        "stat.ME"
-      ],
-      "topic": "Causal Inference"
-    },
-    {
-      "title": "Hierarchical Clustering As a Novel Solution to the Notorious Multicollinearity Problem in Observational Causal Inference",
-      "authors": "Yufei Wu, Zhiying Gu, Alex Deng, Jacob Zhu, Linsha Chen",
-      "abstract": "Multicollinearity is a long lasting challenge in observational causal inference, especially in regressions -- highly correlated independent variables make it hard to isolate their individual impacts on outcomes of interest. While common solutions such as shrinkage estimators and principal component regressions are helpful in prediction problems, a crucial limitation hinders their applicability to causal inference problems -- they cannot provide the original causal relationships. To fill the gap, we present an innovative and intuitive solution, by employing hierarchical clustering to aggregate data in a way that effectively alleviates collinearity. This method is generally applicable to causal problems featuring multicollinearity. We use a marketing application to demonstrate how and why it works.   Expenditures on different advertising channels often exhibit correlations, making it exceedingly difficult to separately measure their impact. Many previous studies proposed to leverage granular cross-sectional data for better identification but, to our knowledge, none explicitly addressed multicollinearity, which undermines causal identification even with granular data. We propose to hierarchically cluster geographic units based on marketing spend correlation to reduce collinearity, and to implement a Bayesian Marketing Mix Model with cluster-level data. Such clustering happens in two steps -- we first normalize and demean geo-level data to establish a common scale and to eliminate the common trends; we then calculate pairwise distance to summarize marketing spend correlation between geos and cluster the ones with moderate to strong correlation. Both descriptive evidence and regression analysis affirm that such hierarchical clustering effectively mitigates collinearity and facilitates the separate identification of the impact of different marketing channels.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.30992v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.30992v1.pdf",
-      "categories": [
-        "stat.ME",
-        "cs.LG",
         "stat.AP"
       ],
       "topic": "Causal Inference"
     },
     {
-      "title": "Neuro-Bayesian-Symbolic Residual Attention Shallow Network: Explainable Deep Learning for Cybersecurity Risk Assessment",
-      "authors": "Nicolaie Popescu-Bodorin, Madeleine Togher",
-      "abstract": "We introduce the Neuro-Bayesian-Symbolic Residual Attention Shallow Network (NBS-RASN), a hybrid neural architecture for explainable cybersecurity risk assessment in open-source ecosystems. Unlike deep models that trade interpretability for accuracy, our shallow network encodes domain knowledge, causal reasoning, and expert judgment as differentiable components. It uses 80 interpretable neurons across 12 layers, including a gatekeeper that enforces five epistemological axioms - precision, causality, falsifiability, transparency, and completeness - as hard constraints before propagation. Despite limited depth, the network exhibits deep-learning traits via residual attention and feedback loops, learning complex risk patterns without becoming a black box. It produces fully decomposable scores: a deterministic weighted component plus an expert adjustment, with each adjustment traceable to named amplifiers (blast radius, propagation speed, structural nature, default exposure, exploitation pattern, institutional criticality). We validate on 20 open-source projects covering all OWASP Top 10:2025 categories and language risk classes, achieving confidence scores of 0.79-0.97, and show that explainability is guaranteed by design, not by a training algorithm. This challenges the assumption that deep learning requires deep networks, proving that shallow networks with deep reasoning can outperform opaque models in high-stakes cybersecurity, where interpretability is essential.",
-      "published": "2026-06-29",
-      "link": "http://arxiv.org/abs/2606.30953v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.30953v1.pdf",
+      "title": "Touching and Feeling the Data: A Reusable Software Pipeline for Tactile Statistical Graphs in Accessible Education",
+      "authors": "Lawrence Obiuwevwi, Krzysztof J. Rechowicz, Jessica M. Johnson, Erika Frydenlund, Vikas Ashok, et al.",
+      "abstract": "Statistical visualization is usually treated as a visual medium, but data can also be touched. Three dimensional printed tactile graphs let blind and low vision students feel distributions, trace trends, and explore relationships through direct haptic interaction. Yet classroom scale use remains limited because producing each graph in CAD software requires specialized skill and hours of manual work. We address this bottleneck as a software problem through a three layer reusable pipeline in about 1500 lines of JavaScript. The first layer derives tactile design parameters automatically from plate dimensions using tactile perception research. The second provides shared chart scaffolding and five modular builders for scatter, bar, histogram, line, and box plots. The optional third layer uses a multi-modal large language model to extract structured chart specifications from uploaded images, with mandatory teacher review before print generation. The pipeline produces print ready binary Standard Tessellation Language files in under 250 milliseconds. We present the design, performance, and limitations.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01214v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01214v1.pdf",
       "categories": [
-        "cs.AI",
+        "cs.HC"
+      ],
+      "topic": "Large Language Models"
+    },
+    {
+      "title": "Quantum vs. Classical Machine Learning: A Unified Empirical Comparison",
+      "authors": "Chuanming Yu, Jiaming Liu, Zihao Ge, Xiongfei Wu, Lulu Zhu, et al.",
+      "abstract": "Quantum computing has emerged as a promising computational paradigm for machine learning (ML), with the potential to offer computational advantages over classical approaches. At this stage, the evidence supporting the performance and advantages of quantum machine learning (QML) models relative to classical models is insufficient.To address this gap, this paper presents an empirical study on the performance of QML models and their classical counterparts. We compare seven model pairs spanning supervised learning and reinforcement learning. Our results indicate that the evaluated quantum machine learning models do not yet surpass the classical baselines in overall prediction performance, policy stability, or training time. Nevertheless, QML remains a promising approach for filtering noise and controlling false positives. Our research findings summarize the challenges facing quantum machine learning across hardware environments, training efficiency, and convergence stability, providing a foundation for research into the robustness and parameter optimization of QML. This work is publicly available at https://github.com/Z-537-437/QML.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01197v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01197v1.pdf",
+      "categories": [
         "cs.LG"
       ],
-      "topic": "Causal Inference"
+      "topic": "Reinforcement Learning"
     },
     {
-      "title": "Generative Skill Composition for LLM Agents",
-      "authors": "Xinyu Zhao, Zhen Tan, Vaishnav Tadiparthi, Nakul Agarwal, Kwonjoon Lee, et al.",
-      "abstract": "Recent LLM agents benefit from skills for solving complex tasks. Skills encapsulate modular packages of procedural knowledge and instructions for performing specialized tasks, such as setting up a sandboxed environment, running a test suite, or refactoring a function across multiple files. As skill libraries grow and become reusable across tasks and domains, selecting an appropriate skill composition has emerged as a central bottleneck. Existing approaches fall into two categories. One exposes the agent's reasoning to the entire skill collection; the other performs skill retrieval via embeddings or LLM-based rerankers. Both provide useful insights; however, they miss the structural nature of skill composition, which is a joint decision over which skills, how many, and in what order -- three dimensions that cannot be decoupled. We formalize this as structured skill composition: given a task and a skill library, predict an executable skill plan that jointly specifies the activated subset, count, and execution order. We propose SkillComposer, which instantiates structured skill composition as task-conditioned skill sequence prediction. SkillComposer uses a constrained autoregressive decoder over skill identifiers, so subset, count, and order emerge jointly from a single decoding pass, and dependencies between successive skills are captured naturally. We build a training set of task-composition pairs from a real, human-curated skill library. We then evaluate SkillComposer along two axes: composition quality on a held-out test set, and downstream task success on SkillsBench across two production-grade coding agents. On GPT-5.2-Codex, Gemini-3-Pro-Preview, SkillComposer raises the pass rate by +23.1, +18.2pp over the no-skill baseline, surpassing top-3 retrieval and matching the gold-skill retrieval upper bound at lower prompt-token cost.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32025v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32025v1.pdf",
+      "title": "Perceive-to-Reason: Decoupling Perception and Reasoning for Fine-Grained Visual Reasoning",
+      "authors": "Hongxing Li, Xiufeng Huang, Dingming Li, Wenjing Jiang, Zixuan Wang, et al.",
+      "abstract": "Fine-grained visual reasoning remains challenging for vision-language models, especially when small but critical visual cues are buried in high-resolution images. Existing approaches rely on repeated cropping or test-time visual search to introduce local evidence, but they typically do not explicitly distinguish perception from reasoning. In this paper, we propose Perceive-to-Reason (P2R), a unified framework that formulates fine-grained visual reasoning as a two-stage process: the model first localizes question-relevant evidence as a Perceiver, and then answers the question as a Reasoner based on the annotated image and cropped regions. To better align training with this decoupled formulation, we further introduce Perception-Reasoning Alternating GRPO (PRA-GRPO), a role-aware reinforcement learning strategy that alternates between perception-focused and reasoning-focused updates using only final-answer supervision. Built on top of Qwen3-VL-Instruct-2B/4B/8B, P2R consistently improves performance across model scales. In particular, P2R-4B achieves 93.2% on V-Star, 81.9% on HR-Bench-4K, and 80.5% on HR-Bench-8K, substantially outperforming its corresponding backbone. Further experiments show that the benefits of P2R extend beyond high-resolution benchmarks to broader multimodal reasoning tasks. These results suggest that explicitly decoupling perception from reasoning provides an effective framework for fine-grained visual reasoning.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01191v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01191v1.pdf",
       "categories": [
-        "cs.CL"
-      ],
-      "topic": "Large Language Models"
-    },
-    {
-      "title": "CoMet: Context and Multiplicity Decomposition for Multimodal Uncertainty Estimation",
-      "authors": "Sanghyuk Chun, William Yang, Amaya Dharmasiri, Olga Russakovsky",
-      "abstract": "Uncertainty estimation has been a long-standing challenge in AI models; it amounts to \"knowing what you don't know,\" and metacognition is notoriously difficult even for humans (cf. the Dunning-Kruger effect). Although it is still far from solved even in simpler classification systems, tackling it in multimodal large language models (MLLMs) is becoming increasingly important. Within MLLMs, uncertainty can stem from any of the diverse sources as well as from their relationships, and further can stem from the unbounded answers in the open-ended setting. To tackle the issues, we propose CoMet, an MLLM uncertainty estimation method by decomposing uncertainty into a context-specific term and a multiplicity-specific term. The former captures ambiguity induced by the given context (e.g., task or prompt), while the latter captures how many plausible answers determined by the context remain compatible with the given input. We train a lightweight post-hoc uncertainty module to estimate these quantities, which enables efficient uncertainty estimation without autoregressive answer generation or repeated sampling. Experiments on various open-ended multimodal benchmarks, hallucination detection, and multiple-choice visual question answering benchmarks show that CoMet consistently improves uncertainty estimation over existing baselines while remaining efficient in practice. Code is available at https://github.com/princetonvisualai/comet_uncertainty",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32012v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32012v1.pdf",
-      "categories": [
-        "cs.LG",
         "cs.CV"
       ],
-      "topic": "Large Language Models"
+      "topic": "Reinforcement Learning"
     },
     {
-      "title": "TRIAGE: Role-Typed Credit Assignment for Agentic Reinforcement Learning",
-      "authors": "Yuanda Xu, Zhengze Zhou, Hejian Sang, Xiaomin Li, Jiaxin Zhang, et al.",
-      "abstract": "Agentic reinforcement learning requires assigning credit to environment-facing actions such as searches, clicks, edits, navigation commands, and object interactions. Standard GRPO uses the final verifier outcome as a uniform advantage over all action tokens. This outcome signal is useful but structurally incomplete: it punishes useful exploration in failed rollouts and reinforces redundant or regressive actions in successful rollouts. We propose TRIAGE, a role-typed credit assignment framework that adds a semantic role axis to outcome credit. A structured judge classifies each segment as decisive progress, useful exploration, no-progress infrastructure, or regression, and a fixed role-conditioned rule maps these labels to bounded segment-level process rewards. This keeps verifier outcomes as the source of optimization direction while correcting the two main blind spots of outcome-only credit. We further show that role-conditioned credit is the optimal segment-level correction expressible from role labels alone -- a projection of the per-segment advantage residual onto the role variable -- so that the fixed role constants reduce advantage estimation error whenever the judge is reliable, and we connect this to lower-variance policy gradients. Across ALFWorld, Search-QA, and WebShop, TRIAGE improves success rates over GRPO for two policy models and outperforms both a scalar judge-derived process reward and an outcome-supervised shared-backbone value baseline. Ablations show that the gain comes from role typing rather than merely adding dense rewards: reliable detection of regression inside successful trajectories is the dominant contributor, while exploration credit provides a consistent secondary gain; on completed ALFWorld and WebShop rollouts, TRIAGE also reduces environment-facing turns by an additional $10.4\\%$ and $14.8\\%$ relative to GRPO.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32017v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32017v1.pdf",
+      "title": "Right in the Right Way: LM Training with Verifiable Rewards and Human Demonstrations",
+      "authors": "Mehul Damani, Isha Puri, Idan Shenfeld, Jacob Andreas",
+      "abstract": "RL with verifiable rewards (RLVR) has emerged as a powerful paradigm for training LMs on tasks with well-defined success metrics, such as code generation and mathematical reasoning. However, current RLVR methods optimize only what can be objectively scored, often neglecting subjective, non-verifiable aspects of human-like outputs, such as style and structure. This limitation leads to well-documented failure modes such as diversity collapse, unnatural-sounding responses, and reward hacking. We propose an adversarial generator-discriminator framework that augments verifiable rewards with a learned signal from human demonstrations. A generator model is trained using RL to maximize both task accuracy and an adversarial reward derived from a discriminator. The discriminator, trained alongside the generator policy, learns to distinguish human-written outputs from model-generated ones. The discriminator serves as a learned proxy for the human output distribution, providing feedback on aspects of generation that are difficult to formalize as scalar rewards. Across diverse domains, including bug fixing and open-ended generation, our approach consistently improves non-verifiable properties while preserving the accuracy gains of RLVR. In bug fixing, our method produces solutions with significantly lower edit distance compared to RLVR baselines while matching end performance. In story generation, our method significantly improves win rate while producing stories that are diverse and more human-like. And in a simple reward hacking benchmark, our method nearly eliminates model misbehavior while maintaining high benchmark scores. Together, these results show that our approach bridges RL and SFT, offering a scalable path toward jointly optimizing the verifiable and non-verifiable properties of a task.",
+      "published": "2026-07-01",
+      "link": "http://arxiv.org/abs/2607.01181v1",
+      "pdfLink": "http://arxiv.org/pdf/2607.01181v1.pdf",
       "categories": [
         "cs.LG",
-        "cs.AI"
-      ],
-      "topic": "Reinforcement Learning"
-    },
-    {
-      "title": "On the Comparison of Reinforcement Learning and Adaptive Control for Linear Systems under Packet Loss and Uncertainty",
-      "authors": "Moh Kamalul Wafi",
-      "abstract": "This paper presents a comparative study between Adaptive Quantized Control (AQC) and Deep Deterministic Policy Gradient (DDPG) reinforcement learning for uncertain linear systems with input quantization over communication channels subject to packet loss. The considered setting also includes dynamic switching from a nominal unstable system to a more unstable one during operation. The AQC is designed for unknown system dynamics using acknowledgment messages to compensate for packet losses, whereas the DDPG controller is trained using the nominal system model without acknowledgment messages. Numerical results show that the DDPG controller achieves faster transient responses and improved damping within its training environment. However, under model uncertainty, packet loss, and dynamic switching, the AQC consistently demonstrates superior robustness owing to its rigorous Lyapunov stability guarantees. These results highlight the trade-off between data-driven performance and model-based robustness, and provide insight into the applicability of reinforcement learning and adaptive control for networked uncertain systems.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.32003v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.32003v1.pdf",
-      "categories": [
-        "eess.SY"
-      ],
-      "topic": "Reinforcement Learning"
-    },
-    {
-      "title": "OopsieVerse: A Safety Benchmark with Damage-Aware Simulation for Robot Manipulation",
-      "authors": "Arnav Balaji, Arpit Bahety, Sriniket Ambatipudi, Daniel Lam, Junhong Xu, et al.",
-      "abstract": "While robotic manipulation capabilities have advanced rapidly, physical safety remains a major barrier to deploying household robots: task success is insufficient if the robot damages itself or its surroundings. Simulation offers a harm-free alternative to costly and dangerous real-world training and evaluation, yet existing simulators lack general mechanisms to detect, quantify, and represent damage. To address this gap, we introduce OOPSIEVERSE, a unified simulation framework and benchmark for damage-aware household manipulation. OOPSIEVERSE provides damage as an explicit, physically-grounded, and taskagnostic signal by converting sources such as contact forces, temperature changes, and liquid interactions into corresponding mechanical, thermal or fluid damage. OOPSIEVERSE comprises two core elements: (1) DAMAGESIM, a simulator-agnostic framework for detecting and quantifying damage during navigation and manipulation, and (2) a suite of household tasks designed to evaluate common damage modes and distinguish between task completion and safe execution. We demonstrate the generality of our framework by instantiating DAMAGESIM in two simulators with different physics backends, OmniGibson (Nvidia Omniverse) and RoboCasa (MuJoCo). We further showcase the utility of OOPSIEVERSE across multiple use cases, including (1) guiding safer demonstration collection via real-time damage feedback, (2) learning safer manipulation policies through damage-conditioned imitation learning and reinforcement learning, (3) benchmarking the safety of state-of-the-art Vision Language Action policies, and (4) improving real-world safety of sim-to-real transferred policies. Together, our results highlight the potential of OOPSIEVERSE as an open-source foundation for systematic, scalable research on safe robot manipulation. For code and more information, please refer to https://robin-lab.cs.utexas.edu/oopsieverse/",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31993v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31993v1.pdf",
-      "categories": [
-        "cs.RO"
-      ],
-      "topic": "Reinforcement Learning"
-    },
-    {
-      "title": "GR2 Technical Report",
-      "authors": "Yufei Li, Zaiwei Zhang, Mingfu Liang, Kavosh Asadi, Jay Xu, et al.",
-      "abstract": "Industrial recommendation systems serve billions of users through a multi-stage funnel -- retrieval, early-stage ranking, and re-ranking -- where the final re-ranking step disproportionately shapes user engagement and downstream performance, particularly for carousel and grid display formats. Despite growing enthusiasm for Large Language Models (LLMs) in recommendation, three gaps hinder industrial adoption: (1) most efforts target retrieval and ranking, leaving re-ranking -- the stage closest to the final user experience -- largely underexplored; (2) LLMs are typically deployed zero-shot or via supervised fine-tuning, underutilizing the reasoning capabilities unlocked by reinforcement learning (RL) on verifiable rewards; (3) deployed catalogs index billions of items with non-semantic identifiers that lie outside any base-LLM vocabulary. We present GR2 (Generative Reasoning Re-Ranker), an end-to-end framework that combines (i) mid-training on semantic IDs produced by a tokenizer with >=99% uniqueness, (ii) reasoning-trace distilled from a stronger teacher via targeted prompting and rejection sampling, and (iii) RL with verifiable rewards purpose-built for re-ranking. To make GR2 resource-viable, we further (iv) introduce a context compressor that amortizes training cost, On-Policy Distillation (OPD) as a scalable alternative to SFT -- which we find collapses at industrial scale -- and reasoning distillation for low-latency serving. GR2 delivers +18.7% R@1, +7.1% R@3, and +9.6% N@3 over legacy baselines on industrial-scale traffic. We further find that reward design is critical in re-ranking: LLMs often hack rewards by preserving the incoming order or exploiting position bias, motivating conditional verifiable rewards as essential industrial components.",
-      "published": "2026-06-30",
-      "link": "http://arxiv.org/abs/2606.31984v1",
-      "pdfLink": "http://arxiv.org/pdf/2606.31984v1.pdf",
-      "categories": [
-        "cs.IR",
-        "cs.AI"
+        "cs.AI",
+        "cs.CL"
       ],
       "topic": "Reinforcement Learning"
     }
